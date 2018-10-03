@@ -6,6 +6,7 @@
 package Interfaz;
 
 import java.util.Date;
+import javax.swing.JList;
 import logica.LogicaNegocio;
 
 /**
@@ -13,13 +14,15 @@ import logica.LogicaNegocio;
  * @author Pelayo
  */
 public class PantallaSecundaria extends javax.swing.JDialog {
+
     private LogicaNegocio logica;
+
     /**
      * Creates new form PantallaSecundaria
      */
-    public PantallaSecundaria(java.awt.Frame parent, boolean modal,LogicaNegocio ln) {
+    public PantallaSecundaria(java.awt.Frame parent, boolean modal, LogicaNegocio ln) {
         super(parent, modal);
-        logica=ln;
+        logica = ln;
         initComponents();
     }
 
@@ -174,20 +177,26 @@ public class PantallaSecundaria extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        
-        String nombre=jTextFieldNombre.getText();
-        String dni=jTextFieldDni.getText();
-        Date fecha=(Date) jSpinnerFecha.getValue();//hacer cast a fecha
-        String direccion=jTextFieldDireccion.getText();
-        String telefono=jTextFieldTelefono.getText();
+
+        String nombre = jTextFieldNombre.getText();
+        String dni = jTextFieldDni.getText();
+        Date fecha = (Date) jSpinnerFecha.getValue();//hacer cast a fecha
+        String direccion = jTextFieldDireccion.getText();
+        String telefono = jTextFieldTelefono.getText();
         logica.altaCorredor(nombre, dni, fecha, direccion, telefono);
-        this.dispose();
+        
+        
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-        logica.borrar(jTextFieldDni.getText());
-        this.dispose();
-        
+        jTextFieldNombre.setText("");
+        jTextFieldDni.setText("");
+
+        jTextFieldDireccion.setText("");
+        jTextFieldTelefono.setText("");
+        //logica.borrar(jTextFieldDni.getText()); para borrar los corredores de la lista
+
+
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     /**
