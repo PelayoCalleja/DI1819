@@ -49,14 +49,11 @@ public class PantallaSecundaria extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTextFieldNombre.setText("jTextField1");
         jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNombreActionPerformed(evt);
             }
         });
-
-        jTextFieldDni.setText("jTextField1");
 
         jButtonAceptar.setText("ACEPTAR");
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,8 +71,6 @@ public class PantallaSecundaria extends javax.swing.JDialog {
             }
         });
 
-        jTextFieldTelefono.setText("jTextField1");
-
         jLabelNombre.setText("Nombre:");
 
         jLabelDNI.setText("DNI:");
@@ -85,8 +80,6 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         jLabelTelefono.setText("Telefono:");
 
         jLabelDireccion.setText("Direccion:");
-
-        jTextFieldDireccion.setText("jTextField1");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
