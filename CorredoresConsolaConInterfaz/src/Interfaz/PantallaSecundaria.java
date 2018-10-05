@@ -6,7 +6,9 @@
 package Interfaz;
 
 import java.util.Date;
+import javafx.scene.control.ButtonBar;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import logica.LogicaNegocio;
 
 /**
@@ -183,18 +185,33 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         Date fecha = (Date) jSpinnerFecha.getValue();//hacer cast a fecha
         String direccion = jTextFieldDireccion.getText();
         String telefono = jTextFieldTelefono.getText();
-        logica.altaCorredor(nombre, dni, fecha, direccion, telefono);
-        
-        
+
+        int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres darte de alta?", "Título", JOptionPane.YES_NO_OPTION);
+        if (resultado == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this, "El corredor se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+            logica.altaCorredor(nombre, dni, fecha, direccion, telefono);
+        } else if (resultado == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "El corredor no se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+
+        this.dispose();
+
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-        jTextFieldNombre.setText("");
-        jTextFieldDni.setText("");
 
-        jTextFieldDireccion.setText("");
-        jTextFieldTelefono.setText("");
         //logica.borrar(jTextFieldDni.getText()); para borrar los corredores de la lista
+        int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres borrarlo?", "Título", JOptionPane.YES_NO_OPTION);
+        if (resultado == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this, "La informacion se ha borrado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+            jTextFieldNombre.setText("");
+            jTextFieldDni.setText("");
+            jTextFieldDireccion.setText("");
+            jTextFieldTelefono.setText("");
+        } else if (resultado == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "La informacion no se ha borrado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+ }
 
 
     }//GEN-LAST:event_jButtonBorrarActionPerformed

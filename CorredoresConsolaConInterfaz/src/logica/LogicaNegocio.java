@@ -35,6 +35,7 @@ public class LogicaNegocio {
         lista.add(c);
         System.out.println("Objeto añadido a la lista correctamente");
         mostrarCorredores();
+        
     }
 
     public void mostrarCorredores() {
