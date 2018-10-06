@@ -211,7 +211,8 @@ public class PantallaSecundaria extends javax.swing.JDialog {
             jTextFieldTelefono.setText("");
         } else if (resultado == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(this, "La informacion no se ha borrado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
- }
+
+        }
 
 
     }//GEN-LAST:event_jButtonBorrarActionPerformed

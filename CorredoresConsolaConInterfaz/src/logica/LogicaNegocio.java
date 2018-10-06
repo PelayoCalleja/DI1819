@@ -38,14 +38,16 @@ public class LogicaNegocio {
         
     }
 
-    public void mostrarCorredores() {
+    public List<Corredor>  mostrarCorredores() {
         if (lista.size() == 0) {
-            System.out.println("No hay corredores");
+            //System.out.println("No hay corredores");
         } else {
             for (Corredor c : lista) {
+                
                 System.out.println(c);
             }
         }
+        return lista;
     }
 
     private Corredor buscar(String dni){
