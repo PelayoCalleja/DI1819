@@ -51,12 +51,12 @@ public class Corredor {
         this.dni = dni;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public String getFechaNacimiento() {
+        return Util.formatearFechaDateAString(fechaNacimiento);
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = Util.formatearFecharStringADate(fechaNacimiento);
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getDireccion() {
@@ -108,7 +108,7 @@ public class Corredor {
         String cadena = "";
         cadena += nombre + ";";
         cadena += dni + ";";
-        cadena += Util.formatearFechaDateAString(fechaNacimiento) + ";";
+        cadena += fechaNacimiento + ";";
         cadena += direccion + ";";
         cadena += telefonodecontacto + ";";
         cadena += "\n";

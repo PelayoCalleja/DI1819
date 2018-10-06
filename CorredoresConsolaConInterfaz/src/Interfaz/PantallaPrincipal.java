@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import logica.Corredor;
 import logica.LogicaNegocio;
 
+
 /**
  *
  * @author Pelayo
@@ -26,7 +27,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         logica = LogicaNegocio.getInstance();
         initComponents();
-        rellenarTablaCorredores();
+        //rellenarTablaCorredores();
     }
 
     /**
@@ -124,20 +125,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         JDialog d = new PantallaSecundaria(this, true, logica);
         d.setVisible(true);
         d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+        rellenarTablaCorredores();
     }//GEN-LAST:event_jButtonDarAltaActionPerformed
+  
     private void rellenarTablaCorredores(){
-        String[] columnas = {"Nombre","DNI","Direccion","Telefono"};
+        String[] columnas = {"Nombre","DNI","Fecha","Direccion","Telefono"};
         DefaultTableModel dtm = new DefaultTableModel(columnas,0);
-        for (Corredor c : logica.mostrarCorredores())
+        for (Corredor c : logica.getLista())
         {
-            //String[] a = new String[]{alumno.getNombre(),
-            //                          alumno.getCurso()};
-            String[] a = new String[4];
+            String[] a = new String[5];
             a[0] = c.getNombre();
             a[1] = c.getDni();
-            a[2]=c.getDireccion();
-            a[3]=c.getTelefonodecontacto();
+            a[2]=c.getFechaNacimiento();
+            a[3]=c.getDireccion();
+            a[4]=c.getTelefonodecontacto();
             dtm.addRow(a);
         }
         jTableCorredores.setModel(dtm);

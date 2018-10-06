@@ -38,6 +38,14 @@ public class LogicaNegocio {
         
     }
 
+    public List<Corredor> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<Corredor> lista) {
+        this.lista = lista;
+    }
+
     public List<Corredor>  mostrarCorredores() {
         if (lista.size() == 0) {
             //System.out.println("No hay corredores");
