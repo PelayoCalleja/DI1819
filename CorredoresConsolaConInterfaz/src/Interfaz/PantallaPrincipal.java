@@ -25,8 +25,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     public PantallaPrincipal() {
         logica = LogicaNegocio.getInstance();
+        logica.leerFichero();
         initComponents();
         rellenarTablaCorredores();
+        
     }
 
     /**
@@ -125,7 +127,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         d.setVisible(true);
         d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         rellenarTablaCorredores();
-
+        logica.guardarEnFichero();
+        
 
     }//GEN-LAST:event_jButtonDarAltaActionPerformed
 

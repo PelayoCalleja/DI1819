@@ -108,7 +108,7 @@ public class Corredor {
         String cadena = "";
         cadena += nombre + ";";
         cadena += dni + ";";
-        cadena += fechaNacimiento + ";";
+        cadena += Util.formatearFechaDateAString(fechaNacimiento) + ";";
         cadena += direccion + ";";
         cadena += telefonodecontacto + ";";
         cadena += "\n";

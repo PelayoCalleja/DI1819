@@ -8,6 +8,7 @@ package logica;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import util.GestorDeFicheros;
 
 /**
  *
@@ -17,9 +18,11 @@ public class LogicaNegocio {
 
     private static LogicaNegocio logica;
     private List<Corredor> lista;
-
+    private GestorDeFicheros gf;
+    
     private LogicaNegocio() {
         lista = new ArrayList<Corredor>();
+        gf= new GestorDeFicheros();
     }
 
     public static LogicaNegocio getInstance() {
@@ -77,5 +80,14 @@ public class LogicaNegocio {
         }
         
     }
+    public void guardarEnFichero(){
+        
+            gf.guardar((ArrayList<Corredor>) lista,"corredores.csv");
+    }
+    
+    public void leerFichero(){
+        lista=gf.cargarEnModelo();
+    }
+    
     
 }
