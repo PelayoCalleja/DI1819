@@ -19,6 +19,8 @@ public class LogicaNegocio {
     private static LogicaNegocio logica;
     private List<Corredor> lista;
     private GestorDeFicheros gf;
+    private Corredor corredorSelecionado;
+    
     
     private LogicaNegocio() {
         lista = new ArrayList<Corredor>();
@@ -49,6 +51,16 @@ public class LogicaNegocio {
         this.lista = lista;
     }
 
+    public Corredor getCorredorSelecionado() {
+        return corredorSelecionado;
+    }
+
+    public void setCorredorSelecionado(Corredor corredorSelecionado) {
+        this.corredorSelecionado = corredorSelecionado;
+    }
+
+    
+    
     public List<Corredor>  mostrarCorredores() {
         if (lista.size() == 0) {
             //System.out.println("No hay corredores");

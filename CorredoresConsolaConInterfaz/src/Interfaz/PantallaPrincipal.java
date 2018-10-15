@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package Interfaz;
-
+import util.Util;
 import java.util.Date;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import logica.Corredor;
@@ -17,7 +18,7 @@ import logica.LogicaNegocio;
  * @author Pelayo
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-
+    private int accion;// 1 alta,2 modificar
     private LogicaNegocio logica;
 
     /**
@@ -45,6 +46,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCorredores = new javax.swing.JTable();
         jButtonDarAlta = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +101,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButtonModificar.setText("MODIFICAR");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,6 +115,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonModificar)
+                .addGap(106, 106, 106)
                 .addComponent(jButtonDarAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(159, 159, 159))
         );
@@ -115,7 +126,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonDarAlta)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDarAlta)
+                    .addComponent(jButtonModificar))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -123,7 +136,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDarAltaActionPerformed
-        JDialog d = new PantallaSecundaria(this, true, logica);
+        JDialog d = new PantallaSecundaria(this, true, logica,1);
         d.setVisible(true);
         d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         rellenarTablaCorredores();
@@ -132,6 +145,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonDarAltaActionPerformed
 
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        int seleccionado = jTableCorredores.getSelectedRow();
+        
+        if(seleccionado==-1) {
+             JOptionPane.showMessageDialog(this, "Tienes que seleccionar el corredor que quieres modificar", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+        
+        }
+        else {
+        Corredor corredorSelecionado = logica.getLista().get(seleccionado);
+        logica.setCorredorSelecionado(corredorSelecionado);
+        logica.getLista().remove(corredorSelecionado);
+        PantallaSecundaria dialogoModificar = new PantallaSecundaria(this,true, logica,2);
+        dialogoModificar.setLocationRelativeTo(null);
+        dialogoModificar.setVisible(true);
+        rellenarTablaCorredores();
+        }
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
     private void rellenarTablaCorredores() {
         String[] columnas = {"Nombre", "DNI", "Fecha", "Direccion", "Telefono"};
         DefaultTableModel dtm = new DefaultTableModel(columnas, 0);
@@ -139,7 +170,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             String[] a = new String[5];
             a[0] = c.getNombre();
             a[1] = c.getDni();
-            a[2] = c.getFechaNacimiento();
+            a[2] = Util.formatearFechaDateAString(c.getFechaNacimiento());
             a[3] = c.getDireccion();
             a[4] = c.getTelefonodecontacto();
             dtm.addRow(a);
@@ -193,6 +224,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDarAlta;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -9,6 +9,7 @@ import java.util.Date;
 import javafx.scene.control.ButtonBar;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import logica.Corredor;
 import logica.LogicaNegocio;
 
 /**
@@ -17,15 +18,28 @@ import logica.LogicaNegocio;
  */
 public class PantallaSecundaria extends javax.swing.JDialog {
 
+    private int accion;
     private LogicaNegocio logica;
 
     /**
      * Creates new form PantallaSecundaria
      */
-    public PantallaSecundaria(java.awt.Frame parent, boolean modal, LogicaNegocio ln) {
+    public PantallaSecundaria(java.awt.Frame parent, boolean modal, LogicaNegocio ln, int accion) {
         super(parent, modal);
         logica = ln;
         initComponents();
+        if (accion == 1) {//Alta
+            jLabelTitulo.setText("Alta Corredores");
+        } else if (accion == 2) {//Modificar
+            jLabelTitulo.setText("Modificar Corredores");
+            Corredor c = logica.getCorredorSelecionado();
+            jTextFieldNombre.setText(c.getNombre());
+            jTextFieldDni.setText(c.getDni());
+            jSpinnerFecha.setValue(c.getFechaNacimiento());
+            jTextFieldDireccion.setText(c.getDireccion());
+            jTextFieldTelefono.setText(c.getTelefonodecontacto());
+        }
+
     }
 
     /**
@@ -50,7 +64,7 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         jLabelDireccion = new javax.swing.JLabel();
         jTextFieldDireccion = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,9 +103,9 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("ALTA CORREDORES");
-        jLabel1.setOpaque(true);
+        jLabelTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setText("ALTA CORREDORES");
+        jLabelTitulo.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,14 +113,14 @@ public class PantallaSecundaria extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -185,14 +199,26 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         Date fecha = (Date) jSpinnerFecha.getValue();//hacer cast a fecha
         String direccion = jTextFieldDireccion.getText();
         String telefono = jTextFieldTelefono.getText();
+        if (accion == 1) {
+            int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres darte de alta?", "Título", JOptionPane.YES_NO_OPTION);
+            if (resultado == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this, "El corredor se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+                logica.altaCorredor(nombre, dni, fecha, direccion, telefono);
+            } else if (resultado == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "El corredor no se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
 
-        int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres darte de alta?", "Título", JOptionPane.YES_NO_OPTION);
-        if (resultado == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(this, "El corredor se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-            logica.altaCorredor(nombre, dni, fecha, direccion, telefono);
-        } else if (resultado == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(this, "El corredor no se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
 
+            int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres modificar el corredor?", "Título", JOptionPane.YES_NO_OPTION);
+            if (resultado == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this, "El corredor ha sido modificado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+                logica.altaCorredor(nombre, dni, fecha, direccion, telefono);
+            } else if (resultado == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "El corredor no ha sido modificado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+                logica.getLista().add(logica.getCorredorSelecionado());
+            }
+            logica.setCorredorSelecionado(null);
         }
 
         this.dispose();
@@ -224,12 +250,12 @@ public class PantallaSecundaria extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonBorrar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelDNI;
     private javax.swing.JLabel jLabelDireccion;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelTelefono;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinnerFecha;
     private javax.swing.JTextField jTextFieldDireccion;

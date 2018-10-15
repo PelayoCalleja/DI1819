@@ -51,8 +51,8 @@ public class Corredor {
         this.dni = dni;
     }
 
-    public String getFechaNacimiento() {
-        return Util.formatearFechaDateAString(fechaNacimiento);
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
     public void setFechaNacimiento(Date fechaNacimiento) {
