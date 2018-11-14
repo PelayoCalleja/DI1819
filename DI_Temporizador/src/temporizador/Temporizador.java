@@ -6,6 +6,9 @@
 package temporizador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JLabel;
@@ -19,11 +22,16 @@ public class Temporizador extends JLabel implements Serializable {
     private int segundos;
     private int contador;
 
-    private CuentaAtrasFinalizada listener;
+    private ArrayList<CuentaAtrasFinalizada> listeners=new ArrayList<>();
 
     public Temporizador() {
     }
 
+    public void addCuentaAtrasFinalizada(CuentaAtrasFinalizada listener){
+        this.listeners.add(listener);
+    }
+    
+    
     public int getSegundos() {
         return segundos;
     }
@@ -40,8 +48,8 @@ public class Temporizador extends JLabel implements Serializable {
         this.contador = contador;
     }
 
-    public void start(CuentaAtrasFinalizada listener) {
-        this.listener=listener;
+    public void start() {
+        
         contador = segundos;
         setText(Integer.toString(segundos));
         Timer timer = new Timer();
@@ -54,7 +62,11 @@ public class Temporizador extends JLabel implements Serializable {
                 } else {
                     setText("Finalizado");
                     cancel();
-                    listener.ejecutar();
+                    if(listeners!=null){
+                        for(CuentaAtrasFinalizada l : listeners)
+                        l.ejecutar(new Date());
+                    }
+                    
                     //Todoo: llamar a un codigo
                 }
             }

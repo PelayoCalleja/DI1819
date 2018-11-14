@@ -5,12 +5,14 @@
  */
 package temporizador;
 
+import java.util.Date;
+
 /**
  *
  * @author Pelayo
  */
 public interface CuentaAtrasFinalizada {
 
-    public void ejecutar();
+    public void ejecutar(Date horaFinalizada);
 
 }
