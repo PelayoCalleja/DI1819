@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import java.util.Date;
 import javax.swing.JOptionPane;
 import logica.logica;
 import temporizador.CuentaAtrasFinalizada;
@@ -14,13 +15,13 @@ import temporizador.CuentaAtrasFinalizada;
  * @author Pelayo
  */
 public class PrimerComponente extends javax.swing.JFrame {
-  
-    /** Cuidado con el null pointer
-     * Creates new form PantallaPrincipal
+
+    /**
+     * Cuidado con el null pointer Creates new form PantallaPrincipal
      */
     public PrimerComponente() {
         initComponents();
-       
+
     }
 
     /**
@@ -78,14 +79,15 @@ public class PrimerComponente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonArrancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArrancarActionPerformed
-            int tiempo = (int) jSpinnerSegundos.getValue();
-            temporizador2.setSegundos(tiempo);
-            temporizador2.start(new CuentaAtrasFinalizada() {
-                @Override
-                public void ejecutar() {
-                    JOptionPane.showMessageDialog(PrimerComponente.this, "Cuenta atrás finalizada");
-                }
-            });
+        int tiempo = (int) jSpinnerSegundos.getValue();
+        temporizador2.setSegundos(tiempo);
+        temporizador2.addCuentaAtrasFinalizada(new CuentaAtrasFinalizada() {
+            @Override
+            public void ejecutar(Date horaFinalizada) {
+                JOptionPane.showMessageDialog(PrimerComponente.this, "Cuenta atrás finalizada");
+            }
+        });
+        temporizador2.start();
     }//GEN-LAST:event_jButtonArrancarActionPerformed
 
     /**
