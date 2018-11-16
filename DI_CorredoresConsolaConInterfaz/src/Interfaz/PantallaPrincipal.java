@@ -7,6 +7,7 @@ package Interfaz;
 
 import static java.lang.System.gc;
 import java.util.Locale;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import logica.LogicaNegocio;
 
@@ -17,13 +18,15 @@ import logica.LogicaNegocio;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     private LogicaNegocio logica;
-
+     private static final String RUTA_LOGO ="/imgs/corredor.png"; 
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
         logica = LogicaNegocio.getInstance();
         initComponents();
+        this.setLocationRelativeTo(this);
+        jLabelFoto.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
     }
 
     /**
@@ -38,6 +41,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jButtonCarreras = new javax.swing.JButton();
         jButtonCorredores = new javax.swing.JButton();
         jLabelGestionCarreras = new javax.swing.JLabel();
+        jLabelFoto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,31 +61,40 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jLabelGestionCarreras.setText(org.openide.util.NbBundle.getMessage(PantallaPrincipal.class, "PantallaPrincipal.jLabelGestionCarreras.text")); // NOI18N
 
+        jLabelFoto.setText(org.openide.util.NbBundle.getMessage(PantallaPrincipal.class, "PantallaPrincipal.jLabelFoto.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(38, 38, 38)
                 .addComponent(jButtonCorredores)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabelGestionCarreras)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabelGestionCarreras))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(30, 30, 30)
                 .addComponent(jLabelGestionCarreras)
-                .addGap(92, 92, 92)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCorredores)
                     .addComponent(jButtonCarreras))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,6 +151,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCarreras;
     private javax.swing.JButton jButtonCorredores;
+    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelGestionCarreras;
     // End of variables declaration//GEN-END:variables
 }
