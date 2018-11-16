@@ -35,7 +35,7 @@ public class PrimerComponente extends javax.swing.JFrame {
 
         jSpinnerSegundos = new javax.swing.JSpinner();
         jButtonArrancar = new javax.swing.JButton();
-        temporizador2 = new temporizador.Temporizador();
+        temporizador1 = new temporizador.Temporizador();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -47,7 +47,7 @@ public class PrimerComponente extends javax.swing.JFrame {
             }
         });
 
-        temporizador2.setText("temporizador2");
+        temporizador1.setText("temporizador1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,10 +56,11 @@ public class PrimerComponente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(134, 134, 134)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinnerSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(temporizador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonArrancar)
+                    .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSpinnerSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonArrancar)))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -72,9 +73,9 @@ public class PrimerComponente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jButtonArrancar)))
-                .addGap(18, 18, 18)
-                .addComponent(temporizador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -82,14 +83,14 @@ public class PrimerComponente extends javax.swing.JFrame {
 
     private void jButtonArrancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArrancarActionPerformed
         int tiempo = (int) jSpinnerSegundos.getValue();
-        temporizador2.setSegundos(tiempo);
-        temporizador2.addCuentaAtrasFinalizada(new CuentaAtrasFinalizada() {
+        temporizador1.setSegundos(tiempo);
+        temporizador1.addCuentaAtrasFinalizada(new CuentaAtrasFinalizada() {
             @Override
             public void ejecutar(Date horaFinalizada) {
                 JOptionPane.showMessageDialog(PrimerComponente.this, "Cuenta atrás finalizada");
             }
         });
-        temporizador2.start();
+        temporizador1.start();
     }//GEN-LAST:event_jButtonArrancarActionPerformed
 
     /**
@@ -133,6 +134,6 @@ public class PrimerComponente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonArrancar;
     private javax.swing.JSpinner jSpinnerSegundos;
-    private temporizador.Temporizador temporizador2;
+    private temporizador.Temporizador temporizador1;
     // End of variables declaration//GEN-END:variables
 }
