@@ -9,13 +9,16 @@ import java.awt.Color;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
  *
  * @author Pelayo
  */
-public class Temporizador extends JLabel implements Serializable{
+public class Temporizador extends JLabel implements Serializable {
 
     private int segundos;
     private int contador;
@@ -25,10 +28,9 @@ public class Temporizador extends JLabel implements Serializable{
     private File rutaImagen;
     private ArrayList<CuentaAtrasFinalizada> listeners = new ArrayList<>();
 
-    
     /**
-     * 
-     * @param listener 
+     *
+     * @param listener
      */
     public void addCuentaAtrasFinalizadaListener(CuentaAtrasFinalizada listener) {
         this.listeners.add(listener);
@@ -90,8 +92,32 @@ public class Temporizador extends JLabel implements Serializable{
         this.listeners = listeners;
     }
 
-    public void start(){
-        
+    public void start() {
+        contador = segundos;
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(contador>0){
+                    
+                }else{
+                    setText(textoFinal);
+                    setForeground(color);
+                    ImageIcon imageIcon = new ImageIcon(rutaImagen.getAbsolutePath());//ruta de la imagen
+                    setIcon(imageIcon);//añadir imagen
+                    cancel();
+
+                    if (listeners != null) {
+                        for (CuentaAtrasFinalizada l : listeners) {
+                            l.ejecutar();
+                        }
+                    }
+                    
+                }
+            }
+        }, 0, 1000);
+
     }
-    
+
 }
