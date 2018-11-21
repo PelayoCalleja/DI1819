@@ -20,8 +20,8 @@ import javax.swing.JLabel;
  */
 public class Temporizador extends JLabel implements Serializable {
 
-    private int segundos;
-    private int contador;
+    private double segundos;
+    private double contador;
     private String textoFinal = "Finalizado";
     private Color color;
     private boolean decimales;
@@ -36,19 +36,19 @@ public class Temporizador extends JLabel implements Serializable {
         this.listeners.add(listener);
     }
 
-    public int getSegundos() {
+    public double getSegundos() {
         return segundos;
     }
 
-    public void setSegundos(int segundos) {
+    public void setSegundos(double segundos) {
         this.segundos = segundos;
     }
 
-    public int getContador() {
+    public double getContador() {
         return contador;
     }
 
-    public void setContador(int contador) {
+    public void setContador(double contador) {
         this.contador = contador;
     }
 
@@ -99,8 +99,12 @@ public class Temporizador extends JLabel implements Serializable {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(contador>0){
-                    
+                if(segundos>0){
+                      if (decimales == true) {
+                        setText(String.valueOf((segundos -= 0.1) / 10.0f));
+                    } else {
+                        setText(Double.toString( segundos--)); //restar de 1 en 1
+                    }
                 }else{
                     setText(textoFinal);
                     setForeground(color);
