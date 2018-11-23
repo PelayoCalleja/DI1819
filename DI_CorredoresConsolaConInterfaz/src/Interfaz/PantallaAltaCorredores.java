@@ -33,7 +33,8 @@ public class PantallaAltaCorredores extends javax.swing.JDialog {
         super(parent, modal);
         logica = ln;
         initComponents();
-        this.accion=accion;
+        this.setLocationRelativeTo(this);
+        this.accion = accion;
         jButtonAceptar.setEnabled(false);
         ValidationGroup group = validationPanelValidar.getValidationGroup();
 
@@ -60,7 +61,7 @@ public class PantallaAltaCorredores extends javax.swing.JDialog {
             group.add(jTextFieldDni, StringValidators.REQUIRE_NON_EMPTY_STRING, StringValidators.REQUIRE_VALID_INTEGER);
             group.add(jTextFieldDireccion, StringValidators.REQUIRE_NON_EMPTY_STRING);
             group.add(jTextFieldTelefono, StringValidators.REQUIRE_NON_EMPTY_STRING, StringValidators.REQUIRE_VALID_INTEGER);
-            
+
             validationPanelValidar.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent e) {
@@ -71,17 +72,15 @@ public class PantallaAltaCorredores extends javax.swing.JDialog {
                     }
                 }
             });
-            
+
             Corredor c = logica.getCorredorSelecionado();
-            
+
             jTextFieldNombre.setText(c.getNombre());
             jTextFieldDni.setText(c.getDni());
             jSpinnerFecha.setValue(c.getFechaNacimiento());
             jTextFieldDireccion.setText(c.getDireccion());
             jTextFieldTelefono.setText(c.getTelefonodecontacto());
-           
 
-            
         }
 
     }
@@ -242,7 +241,7 @@ public class PantallaAltaCorredores extends javax.swing.JDialog {
         Date fecha = (Date) jSpinnerFecha.getValue();//hacer cast a fecha
         String direccion = jTextFieldDireccion.getText();
         String telefono = jTextFieldTelefono.getText();
-        
+
         if (accion == 1) {
             int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres darte de alta?", "Título", JOptionPane.YES_NO_OPTION);
             if (resultado == JOptionPane.YES_OPTION) {
@@ -252,7 +251,7 @@ public class PantallaAltaCorredores extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "El corredor no se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
 
             }
-        
+
         } else {
             int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres modificar el corredor?", "Título", JOptionPane.YES_NO_OPTION);
             if (resultado == JOptionPane.YES_OPTION) {

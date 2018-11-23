@@ -21,16 +21,18 @@ import javax.swing.JFrame;
  * @author Pelayo
  */
 public class PantallaCorredores extends javax.swing.JDialog {
+
     private int accion;// 1 alta,2 modificar
     private LogicaNegocio logica;
     private JFrame parent;
-   
+
     public PantallaCorredores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.parent = (JFrame) parent;
         logica = LogicaNegocio.getInstance();
         logica.leerFichero();
         initComponents();
+        this.setLocationRelativeTo(this);
         rellenarTablaCorredores();
     }
 
@@ -119,7 +121,7 @@ public class PantallaCorredores extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDarAltaActionPerformed
-        
+
         JDialog d = new PantallaAltaCorredores(parent, true, logica, 1);
         d.setVisible(true);
         d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -131,11 +133,10 @@ public class PantallaCorredores extends javax.swing.JDialog {
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         int seleccionado = jTableCorredores.getSelectedRow();
 
-        if(seleccionado==-1) {
+        if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "Tienes que seleccionar el corredor que quieres modificar", "Titulo", JOptionPane.INFORMATION_MESSAGE);
 
-        }
-        else {
+        } else {
             Corredor corredorSelecionado = logica.getLista().get(seleccionado);
             logica.setCorredorSelecionado(corredorSelecionado);
             logica.getLista().remove(corredorSelecionado);
@@ -146,9 +147,6 @@ public class PantallaCorredores extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
-    
-    
-    
     private void rellenarTablaCorredores() {
         String[] columnas = {"Nombre", "DNI", "Fecha", "Direccion", "Telefono"};
         DefaultTableModel dtm = new DefaultTableModel(columnas, 0);
@@ -164,7 +162,7 @@ public class PantallaCorredores extends javax.swing.JDialog {
         jTableCorredores.setModel(dtm);
 
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDarAlta;
     private javax.swing.JButton jButtonModificar;

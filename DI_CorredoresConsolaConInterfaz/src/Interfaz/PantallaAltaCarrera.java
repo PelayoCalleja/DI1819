@@ -29,7 +29,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
         this.accion = accion;
         
         initComponents();
-        
+          this.setLocationRelativeTo(this);
         if (accion == 1) {//Alta
             jLabelAltaCarrera.setText("Alta Carreras");
             

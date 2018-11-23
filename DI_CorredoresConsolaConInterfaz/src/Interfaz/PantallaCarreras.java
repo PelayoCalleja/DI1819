@@ -28,9 +28,9 @@ public class PantallaCarreras extends javax.swing.JDialog {
         super(parent, modal);
         this.parent = (JFrame) parent;
         logica = ln;
-        
-        
+
         initComponents();
+        this.setLocationRelativeTo(this);
         rellenarTablaCarreras();
     }
 
