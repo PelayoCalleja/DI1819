@@ -27,28 +27,24 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
         super(parent, modal);
         logica = ln;
         this.accion = accion;
-        
+
         initComponents();
-          this.setLocationRelativeTo(this);
+        this.setLocationRelativeTo(this);
         if (accion == 1) {//Alta
             jLabelAltaCarrera.setText("Alta Carreras");
-            
+
         } else if (accion == 2) {//Modificar
             jLabelAltaCarrera.setText("Modificar Carreras");
-           
-            
+
             Carrera c = logica.getCarreraSelecionada();
-            
+
             jTextFieldNombre.setText(c.getNombreCarrera());
             jSpinnerFecha.setValue(c.getFechaCarrera());
             jTextFieldLugar.setText(c.getLugarCarrera());
             jTextFieldMaximoCorredores.setText(String.valueOf(c.getMaximoCorredores()));
-           
 
-            
         }
-        
-     
+
     }
 
     /**
@@ -107,15 +103,20 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
         });
 
         jButtonBorrar.setText(org.openide.util.NbBundle.getMessage(PantallaAltaCarrera.class, "PantallaAltaCarrera.jButtonBorrar.text")); // NOI18N
+        jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelFecha)
                             .addComponent(jLabelLugar)
@@ -132,7 +133,6 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jTextFieldMaximoCorredores, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButtonAceptar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBorrar)
@@ -227,6 +227,22 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
+        int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres borrarlo?", "Título", JOptionPane.YES_NO_OPTION);
+        if (resultado == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(this, "La informacion se ha borrado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+            jTextFieldNombre.setText("");
+            jTextFieldLugar.setText("");
+            jTextFieldMaximoCorredores.setText("");
+            
+        } else if (resultado == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "La informacion no se ha borrado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+
+
+    }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     /**
      * @param args the command line arguments
