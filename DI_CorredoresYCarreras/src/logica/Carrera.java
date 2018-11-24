@@ -8,18 +8,24 @@ package logica;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Pelayo
- */
+
 public class Carrera {
 
     private String nombreCarrera;
     private Date fechaCarrera;
     private String lugarCarrera;
     private int maximoCorredores;
-
+    private boolean finalizada;
+    private ArrayList<Corredor> listaCorredores;
+    private ArrayList<Integer> listaDorsales;
+    private int ultimoDorsal;
+    
+    
     public Carrera() {
+        finalizada=false;
+        listaCorredores = new ArrayList<>();
+        listaDorsales = new ArrayList<>();
+        ultimoDorsal=0;
     }
 
     public Carrera(String nombreCarrera, Date fechaCarrera, String lugarCarrera, int maximoCorredores) {
@@ -27,7 +33,10 @@ public class Carrera {
         this.fechaCarrera = fechaCarrera;
         this.lugarCarrera = lugarCarrera;
         this.maximoCorredores = maximoCorredores;
-
+        finalizada=false;
+        listaCorredores = new ArrayList<>();
+        listaDorsales = new ArrayList<>();
+        ultimoDorsal=0;
     }
 
     public String getNombreCarrera() {
@@ -62,10 +71,36 @@ public class Carrera {
         this.maximoCorredores = maximoCorredores;
     }
 
-    @Override
-    public String toString() {
-        return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", fechaCarrera=" + fechaCarrera + ", lugarCarrera=" + lugarCarrera + ", maximoCorredores=" + maximoCorredores + '}';
+    public boolean isFinalizada() {
+        return finalizada;
     }
 
+    public void setFinalizada(boolean finalizada) {
+        this.finalizada = finalizada;
+    }
+
+    public ArrayList<Corredor> getListaCorredores() {
+        return listaCorredores;
+    }
+
+    public ArrayList<Integer> getListaDorsales() {
+        return listaDorsales;
+    }
+
+    public void inscribir(Corredor c){
+        listaCorredores.add(c);
+        ultimoDorsal++;
+        listaDorsales.add(ultimoDorsal);
+    }
+    
+    
+    
+    
+    @Override
+    public String toString() {
+        return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", fechaCarrera=" + fechaCarrera + ", lugarCarrera=" + lugarCarrera + ", maximoCorredores=" + maximoCorredores + ", finalizada=" + finalizada + '}';
+    }
+
+ 
     
 }

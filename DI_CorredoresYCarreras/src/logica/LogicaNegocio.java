@@ -17,14 +17,14 @@ import util.GestorDeFicheros;
 public class LogicaNegocio {
 
     private static LogicaNegocio logica;
-    private List<Corredor> lista;
+    private List<Corredor> listaCorredores;
     private GestorDeFicheros gf;
     private Corredor corredorSelecionado;
     private List<Carrera> listaCarreras;
     private Carrera carreraSelecionada;
 
     private LogicaNegocio() {
-        lista = new ArrayList<Corredor>();
+        listaCorredores = new ArrayList<Corredor>();
         listaCarreras = new ArrayList<Carrera>();
         gf = new GestorDeFicheros();
     }
@@ -39,25 +39,32 @@ public class LogicaNegocio {
 
     public void altaCorredor(String nombre, String dni, Date fechaNacimiento, String direccion, String telefonodecontacto) {
         Corredor c = new Corredor(nombre, dni, fechaNacimiento, direccion, telefonodecontacto);
-        lista.add(c);
+        listaCorredores.add(c);
         System.out.println("Objeto añadido a la lista correctamente");
         mostrarCorredores();
 
     }
 
-    public void altaCarrera(String nombrecarrera,  Date fechaCarrera,String lugar, int numMaxCorredores) {
+    public void altaCarrera(String nombrecarrera,  Date fechaCarrera,String lugar, int numMaxCorredores, ArrayList<Corredor> corredores) {
         Carrera ca = new Carrera(nombrecarrera, fechaCarrera, nombrecarrera, numMaxCorredores);
+        for(Corredor c: corredores) {
+            ca.inscribir(c);
+        }
         listaCarreras.add(ca);
         System.out.println("Carrera añadida a la lista correctamente");
         mostrarCarreras();
     }
 
-    public List<Corredor> getLista() {
-        return lista;
+    public List<Corredor> getListaCorredores() {
+        return listaCorredores;
+    }
+    
+        public List<Corredor> getCopyListaCorredores() {
+            return new ArrayList(listaCorredores);
     }
 
-    public void setLista(List<Corredor> lista) {
-        this.lista = lista;
+    public void setLista(List<Corredor> listaCorredores) {
+        this.listaCorredores = listaCorredores;
     }
 
     public Corredor getCorredorSelecionado() {
@@ -77,15 +84,15 @@ public class LogicaNegocio {
     }
 
     public List<Corredor> mostrarCorredores() {
-        if (lista.size() == 0) {
+        if (listaCorredores.size() == 0) {
             //System.out.println("No hay corredores");
         } else {
-            for (Corredor c : lista) {
+            for (Corredor c : listaCorredores) {
 
                 System.out.println(c);
             }
         }
-        return lista;
+        return listaCorredores;
     }
 
     public List<Carrera> mostrarCarreras() {
@@ -100,7 +107,7 @@ public class LogicaNegocio {
     }
 
     private Corredor buscar(String dni) {
-        for (Corredor c : lista) {
+        for (Corredor c : listaCorredores) {
             if (c.getDni().equals(dni)) {
                 return c;
             }
@@ -113,7 +120,7 @@ public class LogicaNegocio {
         if (c == null) {
             System.out.println("Ese corredor no existe en la lista");
         } else {
-            lista.remove(c);
+            listaCorredores.remove(c);
             System.out.println("El corredor se ha eliminado de la lista");
         }
 
@@ -121,11 +128,11 @@ public class LogicaNegocio {
 
     public void guardarEnFichero() {
 
-        gf.guardar((ArrayList<Corredor>) lista, "corredores.csv");
+        gf.guardar((ArrayList<Corredor>) listaCorredores, "corredores.csv");
     }
 
     public void leerFichero() {
-        lista = gf.cargarEnModelo();
+        listaCorredores = gf.cargarEnModelo();
     }
 
     public Carrera getCarreraSelecionada() {
@@ -135,8 +142,15 @@ public class LogicaNegocio {
     public void setCarreraSelecionada(Carrera carreraSelecionada) {
         this.carreraSelecionada = carreraSelecionada;
     }
-
-
     
+    public  ArrayList<Corredor> corredoresDisponiblesCarrera(Carrera ca) {
+        
+        ArrayList<Corredor> corredoresInscritos = ca.getListaCorredores();
+        ArrayList<Corredor> corredoresDisponibles = new ArrayList<>(listaCorredores);
+        
+        corredoresDisponibles.removeAll(corredoresInscritos); //list contains items only in name
+
+        return corredoresDisponibles;
+    }
     
 }

@@ -137,9 +137,9 @@ public class PantallaCorredores extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Tienes que seleccionar el corredor que quieres modificar", "Titulo", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
-            Corredor corredorSelecionado = logica.getLista().get(seleccionado);
+            Corredor corredorSelecionado = logica.getListaCorredores().get(seleccionado);
             logica.setCorredorSelecionado(corredorSelecionado);
-            logica.getLista().remove(corredorSelecionado);
+            logica.getListaCorredores().remove(corredorSelecionado);
             PantallaAltaCorredores dialogoModificar = new PantallaAltaCorredores(parent, true, logica, 2);
             dialogoModificar.setLocationRelativeTo(null);
             dialogoModificar.setVisible(true);
@@ -150,7 +150,7 @@ public class PantallaCorredores extends javax.swing.JDialog {
     private void rellenarTablaCorredores() {
         String[] columnas = {"Nombre", "DNI", "Fecha", "Direccion", "Telefono"};
         DefaultTableModel dtm = new DefaultTableModel(columnas, 0);
-        for (Corredor c : logica.getLista()) {
+        for (Corredor c : logica.getListaCorredores()) {
             String[] a = new String[5];
             a[0] = c.getNombre();
             a[1] = c.getDni();

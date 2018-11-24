@@ -259,7 +259,7 @@ public class PantallaAltaCorredores extends javax.swing.JDialog {
                 logica.altaCorredor(nombre, dni, fecha, direccion, telefono);
             } else if (resultado == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "El corredor no ha sido modificado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-                logica.getLista().add(logica.getCorredorSelecionado());
+                logica.getListaCorredores().add(logica.getCorredorSelecionado());
             }
             logica.setCorredorSelecionado(null);
         }
