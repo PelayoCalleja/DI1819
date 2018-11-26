@@ -46,7 +46,7 @@ public class LogicaNegocio {
     }
 
     public void altaCarrera(String nombrecarrera,  Date fechaCarrera,String lugar, int numMaxCorredores, ArrayList<Corredor> corredores) {
-        Carrera ca = new Carrera(nombrecarrera, fechaCarrera, nombrecarrera, numMaxCorredores);
+        Carrera ca = new Carrera(nombrecarrera, fechaCarrera, lugar, numMaxCorredores);
         for(Corredor c: corredores) {
             ca.inscribir(c);
         }

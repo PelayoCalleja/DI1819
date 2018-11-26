@@ -18,6 +18,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private LogicaNegocio logica;
      private static final String RUTA_LOGO ="/imgs/corredor.png"; 
+     private static final String RUTA_LOGO2 ="/imgs/imgs.png";
     /**
      * Creates new form PantallaPrincipal
      */
@@ -26,6 +27,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(this);
         jLabelFoto.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));
+        jLabelFoto2.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO2)));
     }
 
     /**
@@ -41,6 +43,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jButtonCorredores = new javax.swing.JButton();
         jLabelFoto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabelFoto2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,37 +67,43 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel1.setText(org.openide.util.NbBundle.getMessage(PantallaPrincipal.class, "PantallaPrincipal.jLabel1.text")); // NOI18N
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        jLabelFoto2.setText(org.openide.util.NbBundle.getMessage(PantallaPrincipal.class, "PantallaPrincipal.jLabelFoto2.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(54, 54, 54)
                 .addComponent(jButtonCorredores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(235, Short.MAX_VALUE)
+                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(jLabelFoto2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(214, 214, 214)
                 .addComponent(jLabel1)
-                .addGap(205, 205, 205))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFoto2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCorredores)
                     .addComponent(jButtonCarreras))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGap(78, 78, 78))
         );
 
         pack();
@@ -153,5 +162,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCorredores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFoto;
+    private javax.swing.JLabel jLabelFoto2;
     // End of variables declaration//GEN-END:variables
 }

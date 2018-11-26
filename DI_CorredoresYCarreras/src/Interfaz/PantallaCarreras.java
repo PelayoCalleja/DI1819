@@ -170,6 +170,7 @@ public class PantallaCarreras extends javax.swing.JDialog {
             logica.guardarEnFichero();
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
+    
     private void rellenarTablaCarreras() {
         String[] columnas = {"Nombre", "Fecha", "Lugar", "Num max Participantes"};
         DefaultTableModel dtm = new DefaultTableModel(columnas, 0);
