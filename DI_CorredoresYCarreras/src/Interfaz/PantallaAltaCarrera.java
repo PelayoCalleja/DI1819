@@ -46,7 +46,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
             Carrera c = logica.getCarreraSelecionada();
             
             provisionalAdd = c.getListaCorredores();
-            provisionalDisponibles = new ArrayList<>(logica.getListaCorredores());//
+            provisionalDisponibles = new ArrayList<>(logica.corredoresDisponiblesCarrera(c));//
 
 
             jTextFieldNombre.setText(c.getNombreCarrera());
@@ -229,12 +229,15 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
     private void mostrarListaDisponible() {
         DefaultListModel dlm1 = new DefaultListModel();
         System.out.println("Disponible");
-        
+        if (accion == 1) {//Alta
         for (Corredor c : provisionalDisponibles) {
             dlm1.addElement(c);
             System.out.println(c);
         }
         jListDisponibles.setModel(dlm1);
+    }else{//Modificar
+         Carrera c = logica.getCarreraSelecionada();   
+        }
     }
 
     private void mostrarListaInscritos() {
@@ -261,10 +264,19 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
         String lugar = jTextFieldLugar.getText();
         int numMax = Integer.valueOf(jTextFieldMaximoCorredores.getText());
 
-        if (accion == 1) {
+        if (accion == 1) {//Alta    
 
-            logica.altaCarrera(nombre, fecha, lugar, numMax,provisionalAdd);
-        } else {
+            
+            int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres dar de alta la carrera?", "Título", JOptionPane.YES_NO_OPTION);
+            if (resultado == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this, "La carrera ha sido creada", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+                logica.altaCarrera(nombre, fecha, lugar, numMax,provisionalAdd);
+                //logica.altaCarrera(nombre, fecha, lugar, numMax,provisionalAdd);
+            } else if (resultado == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "Los datos de la carrera han sido borrados", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+                //logica.getListaCarreras().add(logica.getCarreraSelecionada());
+            }
+        } else {//Modificar
 
             int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres modificar la carrera?", "Título", JOptionPane.YES_NO_OPTION);
             if (resultado == JOptionPane.YES_OPTION) {
@@ -329,6 +341,8 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(this, "Tienes que tener un corredor seleccionado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
             }
+            
+        }else{
             
         }
         
