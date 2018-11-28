@@ -233,6 +233,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                 dlm1.addElement(c);
                 System.out.println(c);
             }
+
             jListDisponibles.setModel(dlm1);
         } else {//Modificar
             Carrera c = logica.getCarreraSelecionada();
@@ -248,7 +249,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                 dlm2.addElement(c);
                 System.out.println(c);
             }
-
+            jListInscritos.setModel(dlm2);
         } else {
             Carrera c = logica.getCarreraSelecionada();
         }
@@ -265,7 +266,6 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
 
         if (accion == 1) {//Alta    
 
-            
             int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres dar de alta la carrera?", "Título", JOptionPane.YES_NO_OPTION);
             if (resultado == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(this, "La carrera ha sido creada", "Titulo", JOptionPane.INFORMATION_MESSAGE);

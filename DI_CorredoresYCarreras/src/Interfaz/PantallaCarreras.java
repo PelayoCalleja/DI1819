@@ -23,7 +23,6 @@ public class PantallaCarreras extends javax.swing.JDialog {
 
     private LogicaNegocio logica;
     private JFrame parent;
-    
 
     public PantallaCarreras(java.awt.Frame parent, boolean modal, LogicaNegocio ln) {
         super(parent, modal);
@@ -183,9 +182,26 @@ public class PantallaCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonVerCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerCorredoresActionPerformed
-        
+        int seleccionado = jTableCarreras.getSelectedRow();
+        if (seleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "Tienes que seleccionar la carrera para ver los corredores de la carrera", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+           
+            
+            /* Carrera carreraSelecionada = logica.getListaCarreras().get(seleccionado);
+            //logica.setCarreraSelecionada(carreraSelecionada);
+            //logica.getListaCarreras().remove(carreraSelecionada);
+            JDialog d = new PantallaAltaCarrera(parent, true, logica, 1);
+            d.setVisible(true);
+            d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            logica.getCarreraSelecionada();
+            logica.corredoresDisponiblesCarrera(carreraSelecionada);
+            // rellenarTablaCarreras();
+            // logica.guardarEnFichero();*/
+        }
     }//GEN-LAST:event_jButtonVerCorredoresActionPerformed
-    
+
     private void rellenarTablaCarreras() {
         String[] columnas = {"Nombre", "Fecha", "Lugar", "Num max Participantes"};
         DefaultTableModel dtm = new DefaultTableModel(columnas, 0);
@@ -196,13 +212,13 @@ public class PantallaCarreras extends javax.swing.JDialog {
             a[1] = Util.formatearFechaDateAString(c.getFechaCarrera());
             a[2] = c.getLugarCarrera();
             a[3] = String.valueOf(c.getMaximoCorredores());
-            
-            if(!c.isFinalizada()){
-              dtm.addRow(a);  
-            }else{
+
+            if (!c.isFinalizada()) {
+                dtm.addRow(a);
+            } else {
                 dtmFinalizada.addRow(a);
             }
-            
+
         }
         jTableCarreras.setModel(dtm);
         jTableCarrerasFinalizadas.setModel(dtmFinalizada);

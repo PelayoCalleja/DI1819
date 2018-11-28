@@ -49,17 +49,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="42" max="-2" attributes="0"/>
-              <EmptySpace pref="169" max="32767" attributes="0"/>
+              <EmptySpace pref="147" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabelFoto2" min="-2" pref="280" max="-2" attributes="0"/>
                   <Component id="jLabelFoto" min="-2" pref="280" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonCorredores" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonCarreras" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="89" max="32767" attributes="0"/>
+              <EmptySpace pref="69" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
