@@ -52,6 +52,7 @@ public class PantallaCarreras extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCarrerasFinalizadas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButtonVerCorredores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -99,6 +100,13 @@ public class PantallaCarreras extends javax.swing.JDialog {
 
         jLabel1.setText(org.openide.util.NbBundle.getMessage(PantallaCarreras.class, "PantallaCarreras.jLabel1.text")); // NOI18N
 
+        jButtonVerCorredores.setText(org.openide.util.NbBundle.getMessage(PantallaCarreras.class, "PantallaCarreras.jButtonVerCorredores.text")); // NOI18N
+        jButtonVerCorredores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerCorredoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,6 +123,8 @@ public class PantallaCarreras extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonModificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonVerCorredores)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonDarAlta)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
@@ -137,7 +147,8 @@ public class PantallaCarreras extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonModificar)
-                    .addComponent(jButtonDarAlta))
+                    .addComponent(jButtonDarAlta)
+                    .addComponent(jButtonVerCorredores))
                 .addGap(44, 44, 44))
         );
 
@@ -170,6 +181,10 @@ public class PantallaCarreras extends javax.swing.JDialog {
             logica.guardarEnFichero();
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonVerCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerCorredoresActionPerformed
+        
+    }//GEN-LAST:event_jButtonVerCorredoresActionPerformed
     
     private void rellenarTablaCarreras() {
         String[] columnas = {"Nombre", "Fecha", "Lugar", "Num max Participantes"};
@@ -197,6 +212,7 @@ public class PantallaCarreras extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDarAlta;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonVerCorredores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTituloCarreras;
     private javax.swing.JScrollPane jScrollPane1;
