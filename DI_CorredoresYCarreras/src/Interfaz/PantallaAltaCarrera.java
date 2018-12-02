@@ -55,6 +55,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
 
         }
 
+        mostrarListaInscritos();
         mostrarListaDisponible();
 
     }
@@ -228,33 +229,24 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
     private void mostrarListaDisponible() {
         DefaultListModel dlm1 = new DefaultListModel();
         System.out.println("Disponible");
-        if (accion == 1) {//Alta
-            for (Corredor c : provisionalDisponibles) {
-                dlm1.addElement(c);
-                System.out.println(c);
-            }
 
-            jListDisponibles.setModel(dlm1);
-        } else {//Modificar
-            Carrera c = logica.getCarreraSelecionada();
+        for (Corredor c : provisionalDisponibles) {
+            dlm1.addElement(c);
+            System.out.println(c);
         }
+
+        jListDisponibles.setModel(dlm1);
+
     }
 
     private void mostrarListaInscritos() {
         DefaultListModel dlm2 = new DefaultListModel();
-        System.out.println("Inscritos");
-        if (accion == 1) {//Alta
 
-            for (Corredor c : provisionalAdd) {
-                dlm2.addElement(c);
-                System.out.println(c);
-            }
-            jListInscritos.setModel(dlm2);
-        } else {
-            Carrera c = logica.getCarreraSelecionada();
+        for (Corredor c : provisionalAdd) {
+            dlm2.addElement(c);
         }
-        jListInscritos.setModel(dlm2);
 
+        jListInscritos.setModel(dlm2);
     }
 
 
@@ -269,8 +261,22 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
             int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres dar de alta la carrera?", "Título", JOptionPane.YES_NO_OPTION);
             if (resultado == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(this, "La carrera ha sido creada", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-                logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
+                if (numMax < provisionalAdd.size()) {
+                    int respuesta = JOptionPane.showConfirmDialog(this, "El numero indicado como máximo es inferior al numero de corredores añadidos,"
+                            + " ¿deseas modificar el máximo?",
+                            "Título", JOptionPane.YES_NO_OPTION);
+                    if (respuesta == JOptionPane.YES_OPTION) {
+                        numMax = provisionalAdd.size();
+                        logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
+
+                    }
+
+                } else {
+                    logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
+                }
+
                 //logica.altaCarrera(nombre, fecha, lugar, numMax,provisionalAdd);
+                //System.out.println(logica.getListaCarreras().get(0).getListaCorredores());
             } else if (resultado == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "Los datos de la carrera han sido borrados", "Titulo", JOptionPane.INFORMATION_MESSAGE);
 
@@ -287,27 +293,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
             }
             logica.setCarreraSelecionada(null);
         }
-        /*if (accion == 1) {
-            int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres darte de alta?", "Título", JOptionPane.YES_NO_OPTION);
-            if (resultado == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(this, "El corredor se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-                logica.altaCorredor(nombre, fecha, lugar, numMax);
-            } else if (resultado == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(this, "El corredor no se ha dado de alta", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-
-           }
-        } else {
-
-            int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres modificar el corredor?", "Título", JOptionPane.YES_NO_OPTION);
-            if (resultado == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(this, "El corredor ha sido modificado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-                logica.altaCorredor(nombre, dni, fecha, direccion, telefono);
-            } else if (resultado == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(this, "El corredor no ha sido modificado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-                logica.getLista().add(logica.getCorredorSelecionado());
-            }
-            logica.setCorredorSelecionado(null);
-        //}*/
+        
 
         this.dispose();
 
@@ -331,11 +317,11 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonInscribirCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInscribirCorredorActionPerformed
-        if (accion == 1) {
+        if (accion == 1) { // alta
             int index = jListDisponibles.getSelectedIndex();
 
             if (index != -1) {
-                provisionalAdd.add(provisionalDisponibles.get(index));
+                provisionalAdd.add(provisionalDisponibles.get(index));//remove
                 provisionalDisponibles.remove(index);
             } else {
                 JOptionPane.showMessageDialog(this, "Tienes que tener un corredor seleccionado", "Titulo", JOptionPane.INFORMATION_MESSAGE);

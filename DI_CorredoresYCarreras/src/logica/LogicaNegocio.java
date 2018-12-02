@@ -148,7 +148,7 @@ public class LogicaNegocio {
         ArrayList<Corredor> corredoresInscritos = ca.getListaCorredores();
         ArrayList<Corredor> corredoresDisponibles = new ArrayList<>(listaCorredores);
         
-        corredoresDisponibles.removeAll(corredoresInscritos); //list contains items only in name
+        corredoresDisponibles.removeAll(corredoresInscritos); 
 
         return corredoresDisponibles;
     }

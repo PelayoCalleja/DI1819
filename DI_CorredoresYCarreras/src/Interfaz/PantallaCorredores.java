@@ -30,7 +30,7 @@ public class PantallaCorredores extends javax.swing.JDialog {
         super(parent, modal);
         this.parent = (JFrame) parent;
         logica = LogicaNegocio.getInstance();
-        logica.leerFichero();
+      
         initComponents();
         this.setLocationRelativeTo(this);
         rellenarTablaCorredores();

@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -182,23 +183,23 @@ public class PantallaCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonVerCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerCorredoresActionPerformed
-        int seleccionado = jTableCarreras.getSelectedRow();
-        if (seleccionado == -1) {
-            JOptionPane.showMessageDialog(this, "Tienes que seleccionar la carrera para ver los corredores de la carrera", "Titulo", JOptionPane.INFORMATION_MESSAGE);
 
-        } else {
-           
-            
-            /* Carrera carreraSelecionada = logica.getListaCarreras().get(seleccionado);
-            //logica.setCarreraSelecionada(carreraSelecionada);
-            //logica.getListaCarreras().remove(carreraSelecionada);
-            JDialog d = new PantallaAltaCarrera(parent, true, logica, 1);
-            d.setVisible(true);
-            d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            logica.getCarreraSelecionada();
-            logica.corredoresDisponiblesCarrera(carreraSelecionada);
-            // rellenarTablaCarreras();
-            // logica.guardarEnFichero();*/
+        //objeto carrera logica.getseleciionado
+        ArrayList<Corredor> c = (ArrayList<Corredor>) logica.getListaCorredores();
+
+        int borrados = c.size();
+        if (borrados > 0) {
+
+            String cadena = "Los corredores inscritos en la carrera:\n";
+            if (borrados > 0) {
+                for (Corredor co : c) {
+                    cadena += co + "\n";
+                }
+                JOptionPane.showMessageDialog(this, cadena);
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay corredores en la carrera");
+
+            }
         }
     }//GEN-LAST:event_jButtonVerCorredoresActionPerformed
 
