@@ -183,17 +183,18 @@ public class PantallaCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonVerCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerCorredoresActionPerformed
+        //objeto carrera logica.getseleciionado    
+        Carrera ca = new Carrera();
+        ca.getListaCorredores();
 
-        //objeto carrera logica.getseleciionado
-        ArrayList<Corredor> c = (ArrayList<Corredor>) logica.getListaCorredores();
-
+        ArrayList<Corredor> c = (ArrayList<Corredor>) logica.corredoresDisponiblesCarrera(ca);
         int borrados = c.size();
         if (borrados > 0) {
 
             String cadena = "Los corredores inscritos en la carrera:\n";
             if (borrados > 0) {
-                for (Corredor co : c) {
-                    cadena += co + "\n";
+                for (Corredor corredor : c) {
+                    cadena += corredor + "\n";
                 }
                 JOptionPane.showMessageDialog(this, cadena);
             } else {

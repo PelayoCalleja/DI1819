@@ -20,7 +20,7 @@ public class LogicaNegocio {
     private List<Corredor> listaCorredores;
     private GestorDeFicheros gf;
     private Corredor corredorSelecionado;
-    private List<Carrera> listaCarreras;
+    private ArrayList<Carrera> listaCarreras;
     private Carrera carreraSelecionada;
 
     private LogicaNegocio() {
@@ -49,6 +49,7 @@ public class LogicaNegocio {
         Carrera ca = new Carrera(nombrecarrera, fechaCarrera, lugar, numMaxCorredores);
         for(Corredor c: corredores) {
             ca.inscribir(c);
+           
         }
         listaCarreras.add(ca);
         System.out.println("Carrera añadida a la lista correctamente");
@@ -75,13 +76,15 @@ public class LogicaNegocio {
         this.corredorSelecionado = corredorSelecionado;
     }
 
-    public List<Carrera> getListaCarreras() {
+    public ArrayList<Carrera> getListaCarreras() {
         return listaCarreras;
     }
 
-    public void setListaCarreras(List<Carrera> listaCarrera) {
-        this.listaCarreras = listaCarrera;
+    public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
+        this.listaCarreras = listaCarreras;
     }
+
+ 
 
     public List<Corredor> mostrarCorredores() {
         if (listaCorredores.size() == 0) {
