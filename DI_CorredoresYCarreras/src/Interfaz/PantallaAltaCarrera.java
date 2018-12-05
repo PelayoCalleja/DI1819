@@ -33,7 +33,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
         this.accion = accion;
 
         initComponents();
-        this.setLocationRelativeTo(this);
+        this.setLocationRelativeTo(null);
 
         if (accion == 1) {//Alta
             jLabelAltaCarrera.setText("Alta Carreras");
@@ -88,6 +88,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListDisponibles = new javax.swing.JList<>();
         jLabelDorsal = new javax.swing.JLabel();
+        jButtonBorrarCorredor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -138,21 +139,21 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
 
         jScrollPane2.setViewportView(jListDisponibles);
 
+        jButtonBorrarCorredor.setText(org.openide.util.NbBundle.getMessage(PantallaAltaCarrera.class, "PantallaAltaCarrera.jButtonBorrarCorredor.text")); // NOI18N
+        jButtonBorrarCorredor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarCorredorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(jLabelAltaCarrera))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane2)))
-                .addContainerGap())
+                .addGap(182, 182, 182)
+                .addComponent(jLabelAltaCarrera)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,21 +170,27 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                                 .addComponent(jButtonBorrar)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
+                                .addGap(81, 81, 81)
                                 .addComponent(jButtonInscribirCorredor)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(90, 90, 90)
+                                .addComponent(jButtonBorrarCorredor))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSpinnerFecha)
-                                    .addComponent(jTextFieldLugar)
-                                    .addComponent(jTextFieldMaximoCorredores)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jTextFieldMaximoCorredores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                                        .addComponent(jSpinnerFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldLugar, javax.swing.GroupLayout.Alignment.LEADING)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabelDorsal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,14 +221,19 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                         .addComponent(jLabelListaCorredores)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelDorsal, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar)
                     .addComponent(jButtonBorrar)
+                    .addComponent(jButtonBorrarCorredor)
                     .addComponent(jButtonInscribirCorredor))
                 .addGap(42, 42, 42))
         );
@@ -272,7 +284,9 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                         numMax = provisionalAdd.size();
                         logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
 
-                    }
+                    } if(respuesta == JOptionPane.NO_OPTION) {
+                        
+                }
 
                 } else {
                     logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
@@ -289,6 +303,7 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
             int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres modificar la carrera?", "Título", JOptionPane.YES_NO_OPTION);
             if (resultado == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(this, "La carrera ha sido modificada", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+
                 logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
             } else if (resultado == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "La carrera  no ha sido modificada", "Titulo", JOptionPane.INFORMATION_MESSAGE);
@@ -296,7 +311,6 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
             }
             logica.setCarreraSelecionada(null);
         }
-        
 
         this.dispose();
 
@@ -320,8 +334,8 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonInscribirCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInscribirCorredorActionPerformed
+        int index = jListDisponibles.getSelectedIndex();
         if (accion == 1) { // alta
-            int index = jListDisponibles.getSelectedIndex();
 
             if (index != -1) {
                 provisionalAdd.add(provisionalDisponibles.get(index));//remove
@@ -330,8 +344,9 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Tienes que tener un corredor seleccionado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
             }
 
-        } else {
-
+        } else {// modificar
+            provisionalAdd.add(provisionalDisponibles.get(index));//remove
+            provisionalDisponibles.remove(index);
         }
 
         jListDisponibles.clearSelection();
@@ -341,12 +356,37 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonInscribirCorredorActionPerformed
 
+    private void jButtonBorrarCorredorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarCorredorActionPerformed
+        int index = jListInscritos.getSelectedIndex();
+        if (accion == 1) { // alta
+
+            if (index != -1) {
+                provisionalDisponibles.add(provisionalAdd.get(index));
+                provisionalAdd.remove(index);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Tienes que tener un corredor seleccionado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } else {
+            provisionalDisponibles.add(provisionalAdd.get(index));
+            provisionalAdd.remove(index);
+        }
+
+        jListDisponibles.clearSelection();
+        jListInscritos.clearSelection();
+        mostrarListaDisponible();
+        mostrarListaInscritos();
+
+    }//GEN-LAST:event_jButtonBorrarCorredorActionPerformed
+
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonBorrar;
+    private javax.swing.JButton jButtonBorrarCorredor;
     private javax.swing.JButton jButtonInscribirCorredor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAltaCarrera;

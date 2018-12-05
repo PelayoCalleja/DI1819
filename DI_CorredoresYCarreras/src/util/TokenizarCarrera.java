@@ -10,7 +10,7 @@ import util.Util;
 
 public class TokenizarCarrera {
 
-  /*  private String linea; // nt
+    private String linea; // nt
 
     public TokenizarCarrera(String linea) { // nt
         this.linea = linea; // nt
@@ -26,10 +26,9 @@ public class TokenizarCarrera {
 
         // Crear una variable por cada uno de los atributos del objeto del modelo
         String nombre = tokens.nextToken();
-        String dni = tokens.nextToken();
         Date fecha = Util.formatearFecharStringADate(tokens.nextToken());
-        String dir = tokens.nextToken();
-        String telefono = tokens.nextToken();
+        String lugar = tokens.nextToken();
+        int numero = Integer.parseInt(tokens.nextToken());
         
         try {
             while (true) {
@@ -42,9 +41,9 @@ public class TokenizarCarrera {
 
         
         // Creo el objeto y lo guardo en la variable que voy a devolver
-        c = new Corredor(nombre, dni, fecha,dir,telefono);
+        c = new Carrera(nombre,fecha,lugar,numero);
         
        return c; // devuelvo la variable que creo en la línea 19
-    }*/
+    }
 
 }

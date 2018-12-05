@@ -21,6 +21,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         logica = LogicaNegocio.getInstance();
         logica.leerFichero();
+        logica.leerFicheroCarreras();
         initComponents();
         this.setLocationRelativeTo(this);
         jLabelFoto.setIcon(new ImageIcon(getClass().getResource(RUTA_LOGO)));

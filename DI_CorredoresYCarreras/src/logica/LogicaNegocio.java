@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import util.GestorDeFicheros;
+import util.GestorDeFicherosCarreras;
 
 /**
- *
+ * 
  * @author Pelayo
  */
 public class LogicaNegocio {
@@ -20,13 +21,15 @@ public class LogicaNegocio {
     private List<Corredor> listaCorredores;
     private GestorDeFicheros gf;
     private Corredor corredorSelecionado;
-    private ArrayList<Carrera> listaCarreras;
+    private List<Carrera> listaCarreras;
     private Carrera carreraSelecionada;
+    private GestorDeFicherosCarreras gfc;
 
     private LogicaNegocio() {
         listaCorredores = new ArrayList<Corredor>();
         listaCarreras = new ArrayList<Carrera>();
         gf = new GestorDeFicheros();
+        gfc = new GestorDeFicherosCarreras();
     }
 
     public static LogicaNegocio getInstance() {
@@ -49,7 +52,6 @@ public class LogicaNegocio {
         Carrera ca = new Carrera(nombrecarrera, fechaCarrera, lugar, numMaxCorredores);
         for(Corredor c: corredores) {
             ca.inscribir(c);
-           
         }
         listaCarreras.add(ca);
         System.out.println("Carrera añadida a la lista correctamente");
@@ -76,15 +78,13 @@ public class LogicaNegocio {
         this.corredorSelecionado = corredorSelecionado;
     }
 
-    public ArrayList<Carrera> getListaCarreras() {
+    public List<Carrera> getListaCarreras() {
         return listaCarreras;
     }
 
-    public void setListaCarreras(ArrayList<Carrera> listaCarreras) {
-        this.listaCarreras = listaCarreras;
+    public void setListaCarreras(List<Carrera> listaCarrera) {
+        this.listaCarreras = listaCarrera;
     }
-
- 
 
     public List<Corredor> mostrarCorredores() {
         if (listaCorredores.size() == 0) {
@@ -138,6 +138,19 @@ public class LogicaNegocio {
         listaCorredores = gf.cargarEnModelo();
     }
 
+    
+     
+     public void guardarCarrerasEnFichero() {
+
+        gfc.guardar((ArrayList<Carrera>) listaCarreras, "carreras.csv");
+    }
+     
+     public void leerFicheroCarreras() {
+        listaCarreras = gfc.cargarEnModelo();
+    }
+     
+     
+     
     public Carrera getCarreraSelecionada() {
         return carreraSelecionada;
     }
@@ -156,4 +169,13 @@ public class LogicaNegocio {
         return corredoresDisponibles;
     }
     
+       public  ArrayList<Corredor> corredoresInscritosCarrera(Carrera ca) {
+        
+        ArrayList<Corredor> corredoresInscritos = ca.getListaCorredores();
+        //ArrayList<Corredor> corredoresDisponibles = new ArrayList<>(listaCorredores);
+        
+       // corredoresDisponibles.removeAll(corredoresDisponibles); 
+
+        return corredoresInscritos;
+    }
 }

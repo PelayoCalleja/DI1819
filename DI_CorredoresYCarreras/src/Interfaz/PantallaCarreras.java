@@ -29,7 +29,6 @@ public class PantallaCarreras extends javax.swing.JDialog {
         super(parent, modal);
         this.parent = (JFrame) parent;
         logica = ln;
-
         initComponents();
         this.setLocationRelativeTo(this);
         rellenarTablaCarreras();
@@ -127,9 +126,9 @@ public class PantallaCarreras extends javax.swing.JDialog {
                         .addComponent(jButtonVerCorredores)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonDarAlta)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addGap(94, 94, 94)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +159,7 @@ public class PantallaCarreras extends javax.swing.JDialog {
         d.setVisible(true);
         d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         rellenarTablaCarreras();
-        logica.guardarEnFichero();
+        logica.guardarCarrerasEnFichero();
 
     }//GEN-LAST:event_jButtonDarAltaActionPerformed
 
@@ -178,13 +177,40 @@ public class PantallaCarreras extends javax.swing.JDialog {
             d.setVisible(true);
             d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             rellenarTablaCarreras();
-            logica.guardarEnFichero();
+            logica.guardarCarrerasEnFichero();
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonVerCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerCorredoresActionPerformed
-        //objeto carrera logica.getseleciionado    
-        Carrera ca = new Carrera();
+        // objeto carrera logica.getseleciionado  
+        int seleccionado = jTableCarreras.getSelectedRow();
+        if (seleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "Tienes que seleccionar la carrera para ver los corredores", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            Carrera carreraSelecionada = logica.getListaCarreras().get(seleccionado);
+
+            ArrayList<Corredor> c = logica.corredoresInscritosCarrera(carreraSelecionada);
+            System.out.println(c);
+            int borrados = c.size();
+            if (borrados > 0) {
+                String cadena = "Los corredores inscritos en la carrera:\n";
+                if (borrados > 0) {
+                    for (Corredor co : c) {
+                        cadena += co + "\n";
+                    }
+                    JOptionPane.showMessageDialog(this, cadena);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No hay corredores en la carrera");
+                }
+            }
+        }
+
+        //Carrera c = new Carrera();
+        //c =logica.getCarreraSelecionada().getListaCorredores();
+        //System.out.println(c);
+
+        /*Carrera ca = new Carrera();
         ca.getListaCorredores();
 
         ArrayList<Corredor> c = (ArrayList<Corredor>) logica.corredoresDisponiblesCarrera(ca);
@@ -193,15 +219,15 @@ public class PantallaCarreras extends javax.swing.JDialog {
 
             String cadena = "Los corredores inscritos en la carrera:\n";
             if (borrados > 0) {
-                for (Corredor corredor : c) {
-                    cadena += corredor + "\n";
+                for (Corredor co : c) {
+                    cadena += co + "\n";
                 }
                 JOptionPane.showMessageDialog(this, cadena);
             } else {
                 JOptionPane.showMessageDialog(this, "No hay corredores en la carrera");
 
             }
-        }
+        }*/
     }//GEN-LAST:event_jButtonVerCorredoresActionPerformed
 
     private void rellenarTablaCarreras() {

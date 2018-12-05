@@ -7,6 +7,7 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.Date;
+import util.Util;
 
 
 public class Carrera {
@@ -93,14 +94,19 @@ public class Carrera {
         listaDorsales.add(ultimoDorsal);
     }
     
-    
-    
-    
     @Override
     public String toString() {
         return "Carrera{" + "nombreCarrera=" + nombreCarrera + ", fechaCarrera=" + fechaCarrera + ", lugarCarrera=" + lugarCarrera + ", maximoCorredores=" + maximoCorredores + ", finalizada=" + finalizada + '}';
     }
 
- 
+ public String serializar() {
+        String cadena = "";
+        cadena += nombreCarrera + ";";
+        cadena += Util.formatearFechaDateAString(fechaCarrera) + ";";
+        cadena += lugarCarrera + ";";
+        cadena += maximoCorredores + ";";
+        cadena += "\n";
+        return cadena;
+    }
     
 }
