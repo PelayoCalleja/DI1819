@@ -1,1 +1,4 @@
-hola;05/12/18;ww;2;[Corredor{nombre=Kaki , dni=85236914, fechaNacimiento=Mon Dec 03 00:00:00 CET 2018, direccion=La fel, telefonodecontacto=654123879}, Corredor{nombre=Pelayo, dni=325689744, fechaNacimiento=Mon Dec 03 00:00:00 CET 2018, direccion=Blimea, telefonodecontacto=684685207}];
+x;06/12/18;x;2;true;Alvaro ;78965412;03/12/18;Ciaño;654127893;1;Kaki ;85236914;03/12/18;La fel;654123879;2;
+a;06/12/18;a;3;true;Alvaro ;78965412;03/12/18;Ciaño;654127893;1;Kaki ;85236914;03/12/18;La fel;654123879;2;
+hola;09/12/18;el;2;true;Mario ;12365478;05/12/18;Sama;654789321;1;Kaki ;85236914;03/12/18;La fel;654123879;2;
+carrera;09/12/18;Blimea;2;true;Alvaro ;78965412;03/12/18;Ciaño;654127893;1;Pelayo;325689744;03/12/18;Blimea;684685207;2;

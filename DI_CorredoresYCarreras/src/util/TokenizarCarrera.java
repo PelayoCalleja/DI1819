@@ -7,7 +7,6 @@ import java.util.StringTokenizer;
 import logica.Carrera;
 import util.Util;
 
-
 public class TokenizarCarrera {
 
     private String linea; // nt
@@ -28,22 +27,33 @@ public class TokenizarCarrera {
         String nombre = tokens.nextToken();
         Date fecha = Util.formatearFecharStringADate(tokens.nextToken());
         String lugar = tokens.nextToken();
-        int numero = Integer.parseInt(tokens.nextToken());
+        int maximo = Integer.parseInt(tokens.nextToken());
+        boolean finalizada = Boolean.parseBoolean(tokens.nextToken());
+
+        ArrayList<Corredor> corredores = new ArrayList<>();
+        ArrayList<Integer> dorsales = new ArrayList<>();
         
         try {
             while (true) {
-                String texto = tokens.nextToken();
-                
+                String nombreCorredor = tokens.nextToken();
+                String dni = tokens.nextToken();
+                Date fechaCorredor = Util.formatearFecharStringADate(tokens.nextToken());
+                String dir = tokens.nextToken();
+                String telefono = tokens.nextToken();
+                Corredor co = new Corredor(nombreCorredor, dni, fechaCorredor,dir,telefono);
+                corredores.add(co);
+                int dorsal=Integer.parseInt(tokens.nextToken());
+                dorsales.add(dorsal); 
+                System.out.println("-- La carrera añade al corredor: " + co);
             }
         } catch (Exception e) {
             System.out.println("Ya está leído todo el objeto");
         }
 
-        
         // Creo el objeto y lo guardo en la variable que voy a devolver
-        c = new Carrera(nombre,fecha,lugar,numero);
-        
-       return c; // devuelvo la variable que creo en la línea 19
+        c = new Carrera(nombre, fecha, lugar, maximo,finalizada,corredores,dorsales);
+        System.out.println(c);
+        return c; // devuelvo la variable que creo en la línea 19
     }
 
 }

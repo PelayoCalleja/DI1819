@@ -32,36 +32,31 @@ public class GestorDeFicheros {
 
     public void leer() {
 
-        BufferedReader br = null; // nt
-        String linea; // nt
-        FileReader fr = null; // nt
+        BufferedReader br = null; 
+        String linea; 
+        FileReader fr = null; 
 
-        // Cambiar el nombre de la clase por lo que sea la fila del fichero
         TokenizarCorredores objToken;
 
         try {
 
-            // Cambiar aquí por el nombre y la extensión entre comillas
-            // El fichero tiene que estar siempre en la misma altura que src
-            // Es decir, lo tengo que ver a la vez desde la carpeta raiz
+           
             File nomFile = new File("Corredores.csv");
 
-            fr = new FileReader(nomFile); //nt
-            br = new BufferedReader(fr); //nt
+            fr = new FileReader(nomFile); 
+            br = new BufferedReader(fr); 
 
-            linea = br.readLine(); //nt
+            linea = br.readLine(); 
 
-            while ((linea = br.readLine()) != null) { //nt
-                objToken = new TokenizarCorredores(linea); // cambiar por n objeto del mismo tipo del de la línea 35
-                Corredor corredor = objToken.tokenizar(); // cambiar por el objeto de lógica que represente cada fila
-                // Esta línea es para comprobar si va bien, si la comento funciona igual
+            while ((linea = br.readLine()) != null) {
+                objToken = new TokenizarCorredores(linea); 
+                Corredor corredor = objToken.tokenizar(); 
                 System.out.println("Corredor" + corredor.toString());
-            } // No tocar nada a partir de aquí
+            } 
 
         } catch (FileNotFoundException ex) {
             System.out.println("No encuentro ese fichero");
         } catch (IOException ex) {
-            //Logger.getLogger(MainAlumnos.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("IOException");
         } finally {
             try {
@@ -74,45 +69,37 @@ public class GestorDeFicheros {
         }
     }
 
-    // Cambiar por el objeto que tenga en el modelo
     public ArrayList<Corredor> cargarEnModelo() {
         
         ArrayList<Corredor> lista = new ArrayList<>();
 
-        BufferedReader br = null; // nt
-        String linea; // nt
-        FileReader fr = null; // nt
+        BufferedReader br = null; 
+        String linea; 
+        FileReader fr = null;  
 
-        // Cambiar el nombre de la clase por lo que sea la fila del fichero
         TokenizarCorredores objToken;
 
         try {
 
-            // Cambiar aquí por el nombre y la extensión entre comillas
-            // El fichero tiene que estar siempre en la misma altura que src
-            // Es decir, lo tengo que ver a la vez desde la carpeta raiz
+
             File nomFile = new File("Corredores.csv");
 
-            fr = new FileReader(nomFile); //nt
-            br = new BufferedReader(fr); //nt
+            fr = new FileReader(nomFile); 
+            br = new BufferedReader(fr); 
 
-           // linea = br.readLine(); //nt
+  
             
-            while ((linea = br.readLine()) != null) { //nt
+            while ((linea = br.readLine()) != null) { 
               
-                objToken = new TokenizarCorredores(linea); // cambiar por n objeto del mismo tipo del de la línea 35
-                Corredor corredor = objToken.tokenizar(); // cambiar por el objeto de lógica que represente cada fila
-               // System.out.println(corredor);
-                lista.add(corredor); // cambiar el nombre de la variable por la qe puse en la línea anterior
-                // Esta línea es para comprobar si va bien, si la comento funciona igual
-                //System.out.println(luchador.toString()); // si quiero qe funciones cambiar el nombre de la variable
-
-            } // No tocar nada a partir de aquí
+                objToken = new TokenizarCorredores(linea);  
+                Corredor corredor = objToken.tokenizar(); 
+                lista.add(corredor); 
+           
+            } 
             return lista;
         } catch (FileNotFoundException ex) {
             System.out.println("No encuentro ese fichero");
         } catch (IOException ex) {
-            //Logger.getLogger(MainAlumnos.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("IOException");
         } finally {
             try {

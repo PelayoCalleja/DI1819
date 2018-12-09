@@ -81,6 +81,26 @@ public class LogicaNegocio {
     public List<Carrera> getListaCarreras() {
         return listaCarreras;
     }
+    
+    public List<Carrera> getListaCarrerasFinalizadas() {
+        ArrayList<Carrera> finalizadas = new ArrayList<>();
+        for (Carrera c : logica.getListaCarreras()) {
+            if(c.isFinalizada()) {
+                finalizadas.add(c);
+            }
+        }
+        return finalizadas;
+    }
+    
+    public List<Carrera> getListaCarrerasNoFinalizadas() {
+        ArrayList<Carrera> nofinalizadas = new ArrayList<>();
+        for (Carrera c : logica.getListaCarreras()) {
+            if(!c.isFinalizada()) {
+                nofinalizadas.add(c);
+            }
+        }
+        return nofinalizadas;
+    }
 
     public void setListaCarreras(List<Carrera> listaCarrera) {
         this.listaCarreras = listaCarrera;
@@ -145,6 +165,10 @@ public class LogicaNegocio {
         gfc.guardar((ArrayList<Carrera>) listaCarreras, "carreras.csv");
     }
      
+      public void guardarCarreraFinalizadaEnFichero() {
+         gfc.guardarCarreraFinalizada(carreraSelecionada);
+      }
+      
      public void leerFicheroCarreras() {
         listaCarreras = gfc.cargarEnModelo();
     }

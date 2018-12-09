@@ -5,6 +5,12 @@
  */
 package Interfaz;
 
+import cronometro.CronometroListener;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+import logica.Carrera;
+import logica.Corredor;
 import logica.LogicaNegocio;
 
 /**
@@ -14,11 +20,46 @@ import logica.LogicaNegocio;
 public class GestionCarrera extends javax.swing.JDialog {
 
     private LogicaNegocio logica;
+    private Carrera ca;//
+    private PantallaCarreras pc;
 
-    public GestionCarrera(java.awt.Frame parent, boolean modal, LogicaNegocio ln) {
+    public GestionCarrera(java.awt.Frame parent, boolean modal, LogicaNegocio ln, Carrera c, PantallaCarreras pc) {
         super(parent, modal);
         initComponents();
         logica = ln;
+        ca = c;
+        this.pc = pc;
+        rellenarLista();
+        GestionCarrera gc = this;
+        
+        
+        cronometro1.setCronometroListener(new CronometroListener() {
+            @Override
+            public void resgistrarTiempo() {
+                int seleccionado = jListCorredores.getSelectedIndex();
+                Corredor corredorSeleccionado = null;
+                if (seleccionado == -1) {
+                    JOptionPane.showMessageDialog(null, "Tienes que seleccionar un corredor", "Titulo", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    corredorSeleccionado = logica.getCarreraSelecionada().getNoFinalizados().get(seleccionado);
+                    logica.getCarreraSelecionada().finalizarCarrera(corredorSeleccionado, cronometro1.getTiempo());
+                     if(!logica.getCarreraSelecionada().isFinalizada()) {
+                        rellenarLista();
+                    }
+                    else {
+                         JOptionPane.showMessageDialog(null, "Todos los corredores han finalizado la carrera", "Fin de la carrera", JOptionPane.INFORMATION_MESSAGE);
+                         pc.rellenarTablaCarreras();
+                         logica.guardarCarrerasEnFichero();
+                         logica.guardarCarreraFinalizadaEnFichero();
+                         logica.setCarreraSelecionada(null);
+                         gc.dispose();
+                    }
+                    
+
+                }
+            }
+        });
+
     }
 
     /**
@@ -30,20 +71,23 @@ public class GestionCarrera extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jButtonIniciar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListCorredores = new javax.swing.JList<>();
+        cronometro1 = new cronometro.Cronometro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText(org.openide.util.NbBundle.getMessage(GestionCarrera.class, "GestionCarrera.jButton1.text")); // NOI18N
-
-        jListCorredores.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jButtonIniciar.setText(org.openide.util.NbBundle.getMessage(GestionCarrera.class, "GestionCarrera.jButtonIniciar.text")); // NOI18N
+        jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarActionPerformed(evt);
+            }
         });
+
         jScrollPane1.setViewportView(jListCorredores);
+
+        cronometro1.setText(org.openide.util.NbBundle.getMessage(GestionCarrera.class, "GestionCarrera.cronometro1.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,25 +96,43 @@ public class GestionCarrera extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonIniciar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(cronometro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGap(38, 38, 38)
+                .addComponent(cronometro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(jButtonIniciar)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rellenarLista() {
+    private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
+        cronometro1.start();
+        jButtonIniciar.setEnabled(false);
+    }//GEN-LAST:event_jButtonIniciarActionPerformed
 
+    private void rellenarLista() {
+        DefaultListModel dlm2 = new DefaultListModel();
+
+        System.out.println(ca.getNoFinalizados());
+        for (Corredor c : ca.getNoFinalizados()) {
+            dlm2.addElement(c);
+        }
+
+        jListCorredores.setModel(dlm2);
     }
 
     /**
@@ -78,7 +140,8 @@ public class GestionCarrera extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private cronometro.Cronometro cronometro1;
+    private javax.swing.JButton jButtonIniciar;
     private javax.swing.JList<String> jListCorredores;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

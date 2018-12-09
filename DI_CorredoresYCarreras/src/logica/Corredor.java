@@ -115,4 +115,14 @@ public class Corredor {
         return cadena;
     }
 
+    public String serializarParaCarrera() {
+        String cadena = "";
+        cadena += nombre + ";";
+        cadena += dni + ";";
+        cadena += Util.formatearFechaDateAString(fechaNacimiento) + ";";
+        cadena += direccion + ";";
+        cadena += telefonodecontacto + ";";
+       
+        return cadena;
+    }
 }

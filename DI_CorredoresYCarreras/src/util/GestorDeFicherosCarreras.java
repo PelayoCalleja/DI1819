@@ -33,36 +33,30 @@ public class GestorDeFicherosCarreras {
 
     public void leer() {
 
-        BufferedReader br = null; // nt
-        String linea; // nt
-        FileReader fr = null; // nt
+        BufferedReader br = null; 
+        String linea; 
+        FileReader fr = null;
 
-        // Cambiar el nombre de la clase por lo que sea la fila del fichero
         TokenizarCarrera objToken;
 
         try {
 
-            // Cambiar aquí por el nombre y la extensión entre comillas
-            // El fichero tiene que estar siempre en la misma altura que src
-            // Es decir, lo tengo que ver a la vez desde la carpeta raiz
-            File nomFile = new File("Corredores.csv");
+            File nomFile = new File("carreras.csv");
 
-            fr = new FileReader(nomFile); //nt
-            br = new BufferedReader(fr); //nt
+            fr = new FileReader(nomFile); 
+            br = new BufferedReader(fr); 
 
-            linea = br.readLine(); //nt
+            linea = br.readLine(); 
 
-            while ((linea = br.readLine()) != null) { //nt
-                objToken = new TokenizarCarrera(linea); // cambiar por n objeto del mismo tipo del de la línea 35
-                Carrera carrera = objToken.tokenizar(); // cambiar por el objeto de lógica que represente cada fila
-                // Esta línea es para comprobar si va bien, si la comento funciona igual
+            while ((linea = br.readLine()) != null) { 
+                objToken = new TokenizarCarrera(linea); 
+                Carrera carrera = objToken.tokenizar(); 
                 System.out.println("Carrera" + carrera.toString());
-            } // No tocar nada a partir de aquí
+            } 
 
         } catch (FileNotFoundException ex) {
             System.out.println("No encuentro ese fichero");
         } catch (IOException ex) {
-            //Logger.getLogger(MainAlumnos.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("IOException");
         } finally {
             try {
@@ -75,45 +69,38 @@ public class GestorDeFicherosCarreras {
         }
     }
 
-    // Cambiar por el objeto que tenga en el modelo
+
     public ArrayList<Carrera> cargarEnModelo() {
         
         ArrayList<Carrera> lista = new ArrayList<>();
 
-        BufferedReader br = null; // nt
-        String linea; // nt
-        FileReader fr = null; // nt
+        BufferedReader br = null; 
+        String linea; 
+        FileReader fr = null; 
 
-        // Cambiar el nombre de la clase por lo que sea la fila del fichero
+       
         TokenizarCarrera objToken;
 
         try {
 
-            // Cambiar aquí por el nombre y la extensión entre comillas
-            // El fichero tiene que estar siempre en la misma altura que src
-            // Es decir, lo tengo que ver a la vez desde la carpeta raiz
-            File nomFile = new File("Carreras.csv");
+       
+            File nomFile = new File("carreras.csv");
 
-            fr = new FileReader(nomFile); //nt
-            br = new BufferedReader(fr); //nt
+            fr = new FileReader(nomFile); 
+            br = new BufferedReader(fr); 
 
-           // linea = br.readLine(); //nt
-            
-            while ((linea = br.readLine()) != null) { //nt
+           
+            while ((linea = br.readLine()) != null) { 
               
-                objToken = new TokenizarCarrera(linea); // cambiar por n objeto del mismo tipo del de la línea 35
-                Carrera carrera = objToken.tokenizar(); // cambiar por el objeto de lógica que represente cada fila
-               // System.out.println(corredor);
-                lista.add(carrera); // cambiar el nombre de la variable por la qe puse en la línea anterior
-                // Esta línea es para comprobar si va bien, si la comento funciona igual
-                //System.out.println(luchador.toString()); // si quiero qe funciones cambiar el nombre de la variable
-
-            } // No tocar nada a partir de aquí
+                objToken = new TokenizarCarrera(linea); 
+                Carrera carrera = objToken.tokenizar();
+             
+                lista.add(carrera); 
+            } 
             return lista;
         } catch (FileNotFoundException ex) {
             System.out.println("No encuentro ese fichero");
         } catch (IOException ex) {
-            //Logger.getLogger(MainAlumnos.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("IOException");
         } finally {
             try {
@@ -177,6 +164,29 @@ public class GestorDeFicherosCarreras {
             for (Carrera o : objects) {
                 bw.write(o.serializar() );
             }
+            System.out.println("Se ha guardado correctamente");
+        } catch (IOException ex) {
+            Logger.getLogger(GestorDeFicherosCarreras.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                bw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(GestorDeFicherosCarreras.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    }
+    
+    
+    public void guardarCarreraFinalizada(Carrera c) {
+        BufferedWriter bw = null;
+
+        String nombreFichero = c.getNombreCarrera()+".txt";
+        try {
+            bw = new BufferedWriter(new FileWriter(nombreFichero));
+            bw.write(c.serializarCarreraFinalizada());
+            
             System.out.println("Se ha guardado correctamente");
         } catch (IOException ex) {
             Logger.getLogger(GestorDeFicherosCarreras.class.getName()).log(Level.SEVERE, null, ex);

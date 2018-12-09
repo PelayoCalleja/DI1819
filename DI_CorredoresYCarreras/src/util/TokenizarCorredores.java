@@ -42,7 +42,7 @@ public class TokenizarCorredores {
         
         // Creo el objeto y lo guardo en la variable que voy a devolver
         c = new Corredor(nombre, dni, fecha,dir,telefono);
-        
+        System.out.println(c);
         return c; // devuelvo la variable que creo en la línea 19
     }
 

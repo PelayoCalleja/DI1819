@@ -54,10 +54,10 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
             jTextFieldMaximoCorredores.setText(String.valueOf(c.getMaximoCorredores()));
 
         }
-
+        
         mostrarListaInscritos();
         mostrarListaDisponible();
-
+        
     }
 
     /**
@@ -283,20 +283,21 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                     if (respuesta == JOptionPane.YES_OPTION) {
                         numMax = provisionalAdd.size();
                         logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
-
-                    } if(respuesta == JOptionPane.NO_OPTION) {
+                         this.dispose();
+                    } else {
                         
-                }
+                    }
 
                 } else {
                     logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
+                    this.dispose();
                 }
 
                 //logica.altaCarrera(nombre, fecha, lugar, numMax,provisionalAdd);
                 //System.out.println(logica.getListaCarreras().get(0).getListaCorredores());
             } else if (resultado == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "Los datos de la carrera han sido borrados", "Titulo", JOptionPane.INFORMATION_MESSAGE);
-
+                this.dispose();
             }
         } else {//Modificar
 
@@ -305,14 +306,17 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "La carrera ha sido modificada", "Titulo", JOptionPane.INFORMATION_MESSAGE);
 
                 logica.altaCarrera(nombre, fecha, lugar, numMax, provisionalAdd);
+          
             } else if (resultado == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "La carrera  no ha sido modificada", "Titulo", JOptionPane.INFORMATION_MESSAGE);
                 logica.getListaCarreras().add(logica.getCarreraSelecionada());
+             
             }
             logica.setCarreraSelecionada(null);
+            this.dispose();
         }
 
-        this.dispose();
+       
 
 
     }//GEN-LAST:event_jButtonAceptarActionPerformed
