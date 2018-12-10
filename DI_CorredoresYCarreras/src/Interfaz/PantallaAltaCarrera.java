@@ -293,8 +293,6 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
                     this.dispose();
                 }
 
-                //logica.altaCarrera(nombre, fecha, lugar, numMax,provisionalAdd);
-                //System.out.println(logica.getListaCarreras().get(0).getListaCorredores());
             } else if (resultado == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "Los datos de la carrera han sido borrados", "Titulo", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
@@ -342,14 +340,14 @@ public class PantallaAltaCarrera extends javax.swing.JDialog {
         if (accion == 1) { // alta
 
             if (index != -1) {
-                provisionalAdd.add(provisionalDisponibles.get(index));//remove
+                provisionalAdd.add(provisionalDisponibles.get(index));
                 provisionalDisponibles.remove(index);
             } else {
                 JOptionPane.showMessageDialog(this, "Tienes que tener un corredor seleccionado", "Titulo", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } else {// modificar
-            provisionalAdd.add(provisionalDisponibles.get(index));//remove
+            provisionalAdd.add(provisionalDisponibles.get(index));
             provisionalDisponibles.remove(index);
         }
 

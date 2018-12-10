@@ -171,9 +171,7 @@ public class Carrera {
     }
     
      public String serializarCarreraFinalizada() {
-         // Nombre de la carrera
-         // Fecha
-         // dorsal/tiempo/nombre_coredor
+
         String cadena = "";
         cadena += nombreCarrera + "\n";
         cadena += Util.formatearFechaDateAString(fechaCarrera) + "\n";

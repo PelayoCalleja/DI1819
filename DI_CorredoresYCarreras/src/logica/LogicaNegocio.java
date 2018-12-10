@@ -108,7 +108,6 @@ public class LogicaNegocio {
 
     public List<Corredor> mostrarCorredores() {
         if (listaCorredores.size() == 0) {
-            //System.out.println("No hay corredores");
         } else {
             for (Corredor c : listaCorredores) {
 
@@ -196,9 +195,7 @@ public class LogicaNegocio {
        public  ArrayList<Corredor> corredoresInscritosCarrera(Carrera ca) {
         
         ArrayList<Corredor> corredoresInscritos = ca.getListaCorredores();
-        //ArrayList<Corredor> corredoresDisponibles = new ArrayList<>(listaCorredores);
-        
-       // corredoresDisponibles.removeAll(corredoresDisponibles); 
+     
 
         return corredoresInscritos;
     }

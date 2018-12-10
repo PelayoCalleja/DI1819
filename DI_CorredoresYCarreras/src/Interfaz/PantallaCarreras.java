@@ -200,7 +200,6 @@ public class PantallaCarreras extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonVerCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerCorredoresActionPerformed
-        // objeto carrera logica.getseleciionado  
         int seleccionado = jTableCarreras.getSelectedRow();
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "Tienes que seleccionar la carrera para ver los corredores", "Titulo", JOptionPane.INFORMATION_MESSAGE);
@@ -224,28 +223,7 @@ public class PantallaCarreras extends javax.swing.JDialog {
             }
         }
 
-        //Carrera c = new Carrera();
-        //c =logica.getCarreraSelecionada().getListaCorredores();
-        //System.out.println(c);
-
-        /*Carrera ca = new Carrera();
-        ca.getListaCorredores();
-
-        ArrayList<Corredor> c = (ArrayList<Corredor>) logica.corredoresDisponiblesCarrera(ca);
-        int borrados = c.size();
-        if (borrados > 0) {
-
-            String cadena = "Los corredores inscritos en la carrera:\n";
-            if (borrados > 0) {
-                for (Corredor co : c) {
-                    cadena += co + "\n";
-                }
-                JOptionPane.showMessageDialog(this, cadena);
-            } else {
-                JOptionPane.showMessageDialog(this, "No hay corredores en la carrera");
-
-            }
-        }*/
+       
     }//GEN-LAST:event_jButtonVerCorredoresActionPerformed
 
     private void jButtonIrCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrCarreraActionPerformed

@@ -26,6 +26,7 @@ public class GestionCarrera extends javax.swing.JDialog {
     public GestionCarrera(java.awt.Frame parent, boolean modal, LogicaNegocio ln, Carrera c, PantallaCarreras pc) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(this);
         logica = ln;
         ca = c;
         this.pc = pc;

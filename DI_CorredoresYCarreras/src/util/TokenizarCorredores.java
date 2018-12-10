@@ -9,21 +9,17 @@ import util.Util;
 
 public class TokenizarCorredores {
 
-    private String linea; // nt
+    private String linea; 
 
-    public TokenizarCorredores(String linea) { // nt
-        this.linea = linea; // nt
+    public TokenizarCorredores(String linea) { 
+        this.linea = linea; 
     }
 
-    // Devuelvo siempre un objeto del tipo que represente cada fila
-    // La clase de este objeto la tengo que tener en el modelo
-    public Corredor tokenizar() {
+   public Corredor tokenizar() {
 
-        Corredor c; // variable donde voy a almacenar el objeto que voy a devolver
-        // Si el separador del fichero no es una coma, lo cambio aquí
-        StringTokenizer tokens = new StringTokenizer(linea, ";");// nt a no ser que el separador del fichero no sea una ,
+        Corredor c; 
+        StringTokenizer tokens = new StringTokenizer(linea, ";");
 
-        // Crear una variable por cada uno de los atributos del objeto del modelo
         String nombre = tokens.nextToken();
         String dni = tokens.nextToken();
         Date fecha = Util.formatearFecharStringADate(tokens.nextToken());
@@ -40,10 +36,9 @@ public class TokenizarCorredores {
         }
 
         
-        // Creo el objeto y lo guardo en la variable que voy a devolver
         c = new Corredor(nombre, dni, fecha,dir,telefono);
         System.out.println(c);
-        return c; // devuelvo la variable que creo en la línea 19
+        return c; 
     }
 
 }
