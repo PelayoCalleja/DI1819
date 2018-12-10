@@ -182,7 +182,7 @@ public class GestorDeFicherosCarreras {
     public void guardarCarreraFinalizada(Carrera c) {
         BufferedWriter bw = null;
 
-        String nombreFichero = c.getNombreCarrera()+".txt";
+        String nombreFichero = c.getNombreCarrera()+".csv";
         try {
             bw = new BufferedWriter(new FileWriter(nombreFichero));
             bw.write(c.serializarCarreraFinalizada());
