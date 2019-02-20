@@ -126,7 +126,7 @@ public class Carrera {
     }
     
     public ArrayList<Corredor> getNoFinalizados(){
-        System.out.println("Get no finalizados...");
+        //System.out.println("Get no finalizados...");
         ArrayList<Corredor> noFinalizaron = new ArrayList<>();
         for(int i = 0;i < listaCorredores.size();i++){  
              if(listaFinalizados.get(i).equals("-1")) {

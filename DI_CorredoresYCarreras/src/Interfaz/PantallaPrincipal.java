@@ -38,6 +38,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabelFoto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabelFoto2 = new javax.swing.JLabel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuExamen = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +65,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         jLabelFoto2.setText(org.openide.util.NbBundle.getMessage(PantallaPrincipal.class, "PantallaPrincipal.jLabelFoto2.text")); // NOI18N
+
+        jMenu3.setText(org.openide.util.NbBundle.getMessage(PantallaPrincipal.class, "PantallaPrincipal.jMenu3.text")); // NOI18N
+        jMenuBar2.add(jMenu3);
+
+        jMenuExamen.setText(org.openide.util.NbBundle.getMessage(PantallaPrincipal.class, "PantallaPrincipal.jMenuExamen.text")); // NOI18N
+        jMenuExamen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuExamenMousePressed(evt);
+            }
+        });
+        jMenuBar2.add(jMenuExamen);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,11 +105,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelFoto2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCorredores)
                     .addComponent(jButtonCarreras))
@@ -114,6 +130,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         d.setVisible(true);
         d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButtonCorredoresActionPerformed
+
+    private void jMenuExamenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuExamenMousePressed
+        JDialog d = new Ejercicio1 (this, true,logica);
+        d.setVisible(true);
+        d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+    }//GEN-LAST:event_jMenuExamenMousePressed
 
     /**
      * @param args the command line arguments
@@ -157,5 +180,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelFoto2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenu jMenuExamen;
     // End of variables declaration//GEN-END:variables
 }

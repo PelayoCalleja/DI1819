@@ -12,7 +12,7 @@ import util.GestorDeFicheros;
 import util.GestorDeFicherosCarreras;
 
 /**
- * 
+ *
  * @author Pelayo
  */
 public class LogicaNegocio {
@@ -48,9 +48,9 @@ public class LogicaNegocio {
 
     }
 
-    public void altaCarrera(String nombrecarrera,  Date fechaCarrera,String lugar, int numMaxCorredores, ArrayList<Corredor> corredores) {
+    public void altaCarrera(String nombrecarrera, Date fechaCarrera, String lugar, int numMaxCorredores, ArrayList<Corredor> corredores) {
         Carrera ca = new Carrera(nombrecarrera, fechaCarrera, lugar, numMaxCorredores);
-        for(Corredor c: corredores) {
+        for (Corredor c : corredores) {
             ca.inscribir(c);
         }
         listaCarreras.add(ca);
@@ -61,9 +61,9 @@ public class LogicaNegocio {
     public List<Corredor> getListaCorredores() {
         return listaCorredores;
     }
-    
-        public List<Corredor> getCopyListaCorredores() {
-            return new ArrayList(listaCorredores);
+
+    public List<Corredor> getCopyListaCorredores() {
+        return new ArrayList(listaCorredores);
     }
 
     public void setLista(List<Corredor> listaCorredores) {
@@ -81,21 +81,21 @@ public class LogicaNegocio {
     public List<Carrera> getListaCarreras() {
         return listaCarreras;
     }
-    
+
     public List<Carrera> getListaCarrerasFinalizadas() {
         ArrayList<Carrera> finalizadas = new ArrayList<>();
         for (Carrera c : logica.getListaCarreras()) {
-            if(c.isFinalizada()) {
+            if (c.isFinalizada()) {
                 finalizadas.add(c);
             }
         }
         return finalizadas;
     }
-    
+
     public List<Carrera> getListaCarrerasNoFinalizadas() {
         ArrayList<Carrera> nofinalizadas = new ArrayList<>();
         for (Carrera c : logica.getListaCarreras()) {
-            if(!c.isFinalizada()) {
+            if (!c.isFinalizada()) {
                 nofinalizadas.add(c);
             }
         }
@@ -157,23 +157,19 @@ public class LogicaNegocio {
         listaCorredores = gf.cargarEnModelo();
     }
 
-    
-     
-     public void guardarCarrerasEnFichero() {
+    public void guardarCarrerasEnFichero() {
 
         gfc.guardar((ArrayList<Carrera>) listaCarreras, "carreras.csv");
     }
-     
-      public void guardarCarreraFinalizadaEnFichero() {
-         gfc.guardarCarreraFinalizada(carreraSelecionada);
-      }
-      
-     public void leerFicheroCarreras() {
+
+    public void guardarCarreraFinalizadaEnFichero() {
+        gfc.guardarCarreraFinalizada(carreraSelecionada);
+    }
+
+    public void leerFicheroCarreras() {
         listaCarreras = gfc.cargarEnModelo();
     }
-     
-     
-     
+
     public Carrera getCarreraSelecionada() {
         return carreraSelecionada;
     }
@@ -181,22 +177,31 @@ public class LogicaNegocio {
     public void setCarreraSelecionada(Carrera carreraSelecionada) {
         this.carreraSelecionada = carreraSelecionada;
     }
-    
-    public  ArrayList<Corredor> corredoresDisponiblesCarrera(Carrera ca) {
-        
+
+    public ArrayList<Corredor> corredoresDisponiblesCarrera(Carrera ca) {
+
         ArrayList<Corredor> corredoresInscritos = ca.getListaCorredores();
         ArrayList<Corredor> corredoresDisponibles = new ArrayList<>(listaCorredores);
-        
-        corredoresDisponibles.removeAll(corredoresInscritos); 
+
+        corredoresDisponibles.removeAll(corredoresInscritos);
 
         return corredoresDisponibles;
     }
-    
-       public  ArrayList<Corredor> corredoresInscritosCarrera(Carrera ca) {
-        
+
+    public ArrayList<Corredor> corredoresInscritosCarrera(Carrera ca) {
+
         ArrayList<Corredor> corredoresInscritos = ca.getListaCorredores();
-     
 
         return corredoresInscritos;
+    }
+
+    public ArrayList<Carrera> carrerasDisponibles() {
+
+        ArrayList<Corredor> corredoresDisponibles = (ArrayList<Corredor>) logica.getListaCorredores();
+        corredoresDisponibles.add(corredorSelecionado);
+        ArrayList<Carrera> carrerasDisponibles = (ArrayList<Carrera>) logica.getListaCarreras();
+        
+        
+        return carrerasDisponibles;
     }
 }
